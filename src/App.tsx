@@ -1,9 +1,14 @@
-import LoginScreen from './modules/login'
+import { RouterProvider } from 'react-router'
+import { router } from './routes'
+import { useNotification } from './shared/hooks/useNotification';
 
 function App() {
+  const { contextHolder } = useNotification();
+  
   return (
     <>
-      <LoginScreen />
+      {contextHolder}
+      <RouterProvider router={router} />
     </>
   )
 }

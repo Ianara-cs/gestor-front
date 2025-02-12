@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input'
 import { ContainerLoginScreen, LoginBox, Title } from '../styles/loginScreen.styles'
-import { useRequests } from '../../../shared/components/hooks/useRequest'
+import { useRequests } from '../../../shared/hooks/useRequest'
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')

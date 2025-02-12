@@ -1,13 +1,21 @@
 import { createContext, useContext, useState } from "react";
-import { ThemeContext } from "styled-components";
+
+type NotificationType = 'success' | 'info' | 'warning' | 'error'
+
+interface NotificationProps {
+  message: string
+  type: NotificationType
+  description?: string
+}
 
 interface GlobalData {
-  accessToken?: string;
+  accessToken?: string
+  notification?: NotificationProps
 }
 
 interface GlobalContextProps {
-  globalData: GlobalData;
-  setGlobalData: (globalData: GlobalData) => void;
+  globalData: GlobalData
+  setGlobalData: (globalData: GlobalData) => void
 }
 
 const GlobalContext = createContext({} as GlobalContextProps)
@@ -20,14 +28,25 @@ export const GlobalProvider = ({children}: GlobalProviderProps) => {
   const [globalData, setGlobalData] = useState<GlobalData>({});
 
   return (
-    <ThemeContext.Provider value={{globalData, setGlobalData}}>
+    <GlobalContext.Provider value={{globalData, setGlobalData}}>
       {children}
-    </ThemeContext.Provider>
+    </GlobalContext.Provider>
   )
 }
 
 export const useGlobalContext = () => {
   const { globalData, setGlobalData } = useContext(GlobalContext);
+
+  const setNotification = (message: string, type: NotificationType, description?: string) => {
+    setGlobalData({
+      ...globalData,
+      notification: {
+        message,
+        type,
+        description,
+      },
+    })
+  }
 
   const setAccessToken = (accessToken: string) => {
     setGlobalData({
@@ -37,7 +56,9 @@ export const useGlobalContext = () => {
   }
 
   return {
+    notification: globalData?.notification,
     accessToken: globalData?.accessToken,
     setAccessToken,
+    setNotification,
   }
 } 
