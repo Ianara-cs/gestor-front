@@ -3,10 +3,12 @@ import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input'
 import { ContainerLoginScreen, LoginBox, Title } from '../styles/loginScreen.styles'
 import axios from 'axios'
+import { useRequests } from '../../../shared/components/hooks/useRequest'
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const {postRequest, loading} = useRequests()
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
@@ -17,18 +19,9 @@ const LoginScreen = () => {
   }
 
   const handleLogin = async () => {
-    await axios({
-      method: 'post',
-      url: '',
-      data: {
-        email: email,
-        password: password
-      }
-    }).then((result) => {
-      alert('Fez login')
-      return result.data
-    }).catch(() => {
-      alert('Usuário ou senha inválida')
+    postRequest('', {
+      email: email,
+      password: password
     })
   }
 
@@ -49,7 +42,7 @@ const LoginScreen = () => {
           onChange={handlePassword} 
           value={password}
         />
-        <Button margin='2rem 0' type='primary' onClick={handleLogin}>Entrar</Button>
+        <Button loading={loading} margin='2rem 0' type='primary' onClick={handleLogin}>Entrar</Button>
       </LoginBox>
     </ContainerLoginScreen>
   )
