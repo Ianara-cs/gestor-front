@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input'
 import { ContainerLoginScreen, LoginBox, Title } from '../styles/loginScreen.styles'
-import axios from 'axios'
 import { useRequests } from '../../../shared/components/hooks/useRequest'
 
 const LoginScreen = () => {
