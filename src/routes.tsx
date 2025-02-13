@@ -1,14 +1,10 @@
-import { createBrowserRouter, RouteObject } from "react-router";
+import { createBrowserRouter } from "react-router";
 import { loginRoutes } from "./modules/login/routes";
-
-const mainRoutes: RouteObject[] = [
-  {
-    path: '/',
-    element: <div>Tela Principal</div>,
-    errorElement: <div>Página não encontrada</div>,
-  },
-];
+import { firstScreenRoutes } from "./modules/firstScreen/routes";
+import { productScreens } from "./modules/product/routes";
 
 export const router = createBrowserRouter([
-  ...loginRoutes, ...mainRoutes
+  ...loginRoutes, 
+  ...firstScreenRoutes,
+  ...productScreens,
 ]);
