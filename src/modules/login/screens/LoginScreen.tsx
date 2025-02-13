@@ -7,7 +7,7 @@ import { useRequests } from '../../../shared/hooks/useRequest'
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const {postRequest, loading} = useRequests()
+  const {authRequest, loading} = useRequests()
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
@@ -18,7 +18,7 @@ const LoginScreen = () => {
   }
 
   const handleLogin = async () => {
-    postRequest('', {
+    authRequest({
       email: email,
       password: password
     })

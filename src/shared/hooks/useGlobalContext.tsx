@@ -9,7 +9,6 @@ interface NotificationProps {
 }
 
 interface GlobalData {
-  accessToken?: string
   notification?: NotificationProps
 }
 
@@ -48,17 +47,8 @@ export const useGlobalContext = () => {
     })
   }
 
-  const setAccessToken = (accessToken: string) => {
-    setGlobalData({
-      ...globalData,
-      accessToken
-    })
-  }
-
   return {
     notification: globalData?.notification,
-    accessToken: globalData?.accessToken,
-    setAccessToken,
     setNotification,
   }
 } 
