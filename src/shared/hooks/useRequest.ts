@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useState } from "react"
 import { useGlobalContext } from "./useGlobalContext"
 import ConnectionAPI, { connectionAPIPost, MethodType } from "../functions/connection/connectionAPI"
@@ -16,12 +15,15 @@ export const useRequests = () => {
   const request = async<T>(
     url: string,
     method: MethodType,
-    body: unknown
+    saveGlobal?: (object: T) => void,
+    body?: unknown
   ): Promise<T | undefined> => {
     setLoading(true)
     const returnObject: T | undefined = await ConnectionAPI.connection<T>(url, method, body)
     .then((result) => {
-      alert('Fez login')
+      if (saveGlobal) {
+        saveGlobal(result);
+      }
       return result
     })
     .catch((error: Error) => {
@@ -31,19 +33,6 @@ export const useRequests = () => {
 
     setLoading(false)
     return returnObject
-  }
-
-  const postRequest = async (url: string, body: unknown) => {
-    setLoading(true)
-    const returnData = await connectionAPIPost(url, body).then((result) => {
-      setNotification('Entrando', 'success');
-      return result
-    }).catch((error: Error) => {
-      setNotification(error.message, 'error');
-    })
-
-    setLoading(false)
-    return returnData
   }
 
   const authRequest = async (body: unknown) => {
@@ -63,6 +52,5 @@ export const useRequests = () => {
     loading,
     authRequest,
     request,
-    postRequest
   }
 }
