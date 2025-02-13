@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useGlobalContext } from "./useGlobalContext"
 import ConnectionAPI, { connectionAPIPost, MethodType } from "../functions/connection/connectionAPI"
 import { useNavigate } from "react-router"
-import { ProductRoutesEnum } from "../../modules/product/routes"
+import { MenuRoutesEnum } from "../../modules/menus/routes"
 import { AuthType } from "../../modules/login/types/AuthType"
 import { URL_AUTH } from "../constants/urls"
 import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus"
@@ -50,7 +50,7 @@ export const useRequests = () => {
     setLoading(true)
     await connectionAPIPost<AuthType>(URL_AUTH, body).then((result) => {
       setNotification('Entrando', 'success');
-      navigate(ProductRoutesEnum.PRODUCT)
+      navigate(MenuRoutesEnum.MENU)
       return result
     }).catch(() => {
       setNotification(ERROR_INVALID_PASSWORD, 'error');
