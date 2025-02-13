@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useGlobalContext } from "./useGlobalContext"
-import { connectionAPIPost } from "../functions/connection/connectionAPI"
+import ConnectionAPI, { connectionAPIPost, MethodType } from "../functions/connection/connectionAPI"
 import { useNavigate } from "react-router"
 import { ProductRoutesEnum } from "../../modules/product/routes"
 import { AuthType } from "../../modules/login/types/AuthType"
@@ -13,20 +13,24 @@ export const useRequests = () => {
   const { setNotification } = useGlobalContext()
   const navigate = useNavigate()
 
-  const getRequest = async (url: string) => {
+  const request = async<T>(
+    url: string,
+    method: MethodType,
+    body: unknown
+  ): Promise<T | undefined> => {
     setLoading(true)
-    const returnData = await axios({
-      method: 'get',
-      url: url,
-    }).then((result) => {
+    const returnObject: T | undefined = await ConnectionAPI.connection<T>(url, method, body)
+    .then((result) => {
       alert('Fez login')
-      return result.data
-    }).catch(() => {
-      alert('Erro');
+      return result
     })
+    .catch((error: Error) => {
+      setNotification(error.message, 'error');
+      return undefined;
+    });
 
     setLoading(false)
-    return returnData
+    return returnObject
   }
 
   const postRequest = async (url: string, body: unknown) => {
@@ -58,7 +62,7 @@ export const useRequests = () => {
   return {
     loading,
     authRequest,
-    getRequest,
+    request,
     postRequest
   }
 }
