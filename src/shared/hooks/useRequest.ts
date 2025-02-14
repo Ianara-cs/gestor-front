@@ -10,7 +10,6 @@ import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus"
 export const useRequests = () => {
   const [ loading, setLoading ] = useState(false)
   const { setNotification } = useGlobalContext()
-  const navigate = useNavigate()
 
   const request = async<T>(
     url: string,
@@ -36,6 +35,7 @@ export const useRequests = () => {
   }
 
   const authRequest = async (body: unknown) => {
+    const navigate = useNavigate();
     setLoading(true)
     await connectionAPIPost<AuthType>(URL_AUTH, body).then((result) => {
       setNotification('Entrando', 'success');
