@@ -9,7 +9,7 @@ interface InputProps extends InputPropsAnt{
 const Input = ({title, margin,...props}: InputProps) => {
   return (
     <BoxInput style={{margin}}>
-      <TitleInput>{title}</TitleInput>
+      {title && <TitleInput>{title}</TitleInput>}
       <InputAnt {...props} />
     </BoxInput>
   )
