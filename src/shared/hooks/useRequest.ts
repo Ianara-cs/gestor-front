@@ -10,7 +10,7 @@ import { UserType } from "../../modules/login/types/UserType"
 
 export const useRequests = () => {
   const [ loading, setLoading ] = useState(false)
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { setNotification, setUser } = useGlobalContext()
 
   const request = async<T>(
@@ -36,8 +36,8 @@ export const useRequests = () => {
     return returnObject
   }
 
-  const authRequest = async (body: unknown) => {
-    // const navigate = useNavigate();
+  const authRequest = async (body: unknown, navigate: (path: string) => void) => {
+    // const navigate = useNavigate()
     setLoading(true)
     // Simulando um login
     // await connectionAPIPost<AuthType>(URL_AUTH, body).then((result) => {
