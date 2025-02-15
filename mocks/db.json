@@ -383,6 +383,16 @@
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
     }
   ],
+  "login": {
+    "email": "nara.com",
+    "password": "123"
+  },
+  "user": {
+    "id": 1,
+    "email": "nara.com",
+    "password": "123",
+    "name": "Ianara"
+  },
   "profile": {
     "name": "typicode"
   }
