@@ -1,7 +1,7 @@
 import { Input as InputAnt, InputProps as InputPropsAnt } from 'antd'
 import { BoxInput, TitleInput } from './input.styles'
 
-interface InputProps extends InputPropsAnt{
+export interface InputProps extends InputPropsAnt{
   title?: string
   margin?: string
 }
