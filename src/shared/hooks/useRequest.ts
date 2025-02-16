@@ -5,16 +5,15 @@ import ConnectionAPI, {
   connectionAPIPost,
   MethodType,
 } from '../functions/connection/connectionAPI'
-import { useNavigate } from 'react-router'
-import { MenuRoutesEnum } from '../../modules/menus/routes'
+import { NavigateFunction } from 'react-router'
 import { AuthType } from '../../modules/login/types/AuthType'
 import { URL_AUTH, URL_USER } from '../constants/urls'
 import { ERROR_INVALID_PASSWORD } from '../constants/errosStatus'
 import { UserType } from '../../modules/login/types/UserType'
+import { FirstScreenRoutesEnum } from '../../modules/firstScreen/routes'
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false)
-  // const navigate = useNavigate();
   const { setNotification, setUser } = useGlobalContext()
 
   const request = async <T>(
@@ -40,7 +39,7 @@ export const useRequests = () => {
     return returnObject
   }
 
-  const authRequest = async (body: unknown) => {
+  const authRequest = async (body: unknown, navigate: NavigateFunction): Promise<void> => {
     setLoading(true)
     // Simulando um login
     // await connectionAPIPost<AuthType>(URL_AUTH, body).then((result) => {
@@ -48,7 +47,7 @@ export const useRequests = () => {
       .then((result) => {
         setUser(result)
         setNotification('Entrando', 'success')
-        location.href = '/'
+        navigate(FirstScreenRoutesEnum.FIRST_SCREEN)
         return result
       })
       .catch(() => {

@@ -3,11 +3,13 @@ import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input/input'
 import { ContainerLoginScreen, LoginBox, Title } from '../styles/loginScreen.styles'
 import { useRequests } from '../../../shared/hooks/useRequest'
+import { useNavigate } from 'react-router'
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { authRequest, loading } = useRequests()
+  const navigate = useNavigate()
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
@@ -18,10 +20,13 @@ const LoginScreen = () => {
   }
 
   const handleLogin = async () => {
-    authRequest({
-      email: email,
-      password: password,
-    })
+    authRequest(
+      {
+        email: email,
+        password: password,
+      },
+      navigate,
+    )
   }
 
   return (
