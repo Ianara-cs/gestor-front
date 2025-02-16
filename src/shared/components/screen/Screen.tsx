@@ -1,23 +1,24 @@
-import React from "react"
-import { ScreenContainer } from "./screen.style"
-import Breadcrumb, { ListBreadcrumb } from "../breadcrumb/Breadcrumb";
-import { Divider } from "antd";
-
+import React from 'react'
+import { ScreenContainer } from './screen.style'
+import Breadcrumb, { ListBreadcrumb } from '../breadcrumb/Breadcrumb'
+import { Divider } from 'antd'
+import Menu from '../menu/menu'
 
 interface ScreenProps {
   children: React.ReactNode
-  listBreadcrumb?: ListBreadcrumb[];
+  listBreadcrumb?: ListBreadcrumb[]
 }
 
-const Screen = ({children, listBreadcrumb}: ScreenProps) => {
+const Screen = ({ children, listBreadcrumb }: ScreenProps) => {
   return (
     <ScreenContainer>
-      {listBreadcrumb && 
+      <Menu />
+      {listBreadcrumb && (
         <>
           <Breadcrumb listBreadcrumb={listBreadcrumb} />
-          <Divider/>
+          <Divider />
         </>
-      }
+      )}
       {children}
     </ScreenContainer>
   )
