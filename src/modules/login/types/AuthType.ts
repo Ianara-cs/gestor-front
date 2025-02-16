@@ -1,5 +1,5 @@
-import { UserType } from './UserType';
+import { UserType } from './UserType'
 export interface AuthType {
-  accessToken: string;
-  user: UserType;
+  accessToken: string
+  user: UserType
 }

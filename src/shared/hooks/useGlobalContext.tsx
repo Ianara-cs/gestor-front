@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { UserType } from "../../modules/login/types/UserType";
+import { createContext, useContext, useState } from 'react'
+import { UserType } from '../../modules/login/types/UserType'
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error'
 
@@ -11,7 +11,7 @@ interface NotificationProps {
 
 interface GlobalData {
   notification?: NotificationProps
-  user?: UserType;
+  user?: UserType
 }
 
 interface GlobalContextProps {
@@ -22,21 +22,21 @@ interface GlobalContextProps {
 const GlobalContext = createContext({} as GlobalContextProps)
 
 interface GlobalProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-export const GlobalProvider = ({children}: GlobalProviderProps) => {
-  const [globalData, setGlobalData] = useState<GlobalData>({});
+export const GlobalProvider = ({ children }: GlobalProviderProps) => {
+  const [globalData, setGlobalData] = useState<GlobalData>({})
 
   return (
-    <GlobalContext.Provider value={{globalData, setGlobalData}}>
+    <GlobalContext.Provider value={{ globalData, setGlobalData }}>
       {children}
     </GlobalContext.Provider>
   )
 }
 
 export const useGlobalContext = () => {
-  const { globalData, setGlobalData } = useContext(GlobalContext);
+  const { globalData, setGlobalData } = useContext(GlobalContext)
 
   const setNotification = (message: string, type: NotificationType, description?: string) => {
     setGlobalData({
@@ -49,10 +49,10 @@ export const useGlobalContext = () => {
     })
   }
 
-  const setUser= (user: UserType) => {
+  const setUser = (user: UserType) => {
     setGlobalData({
       ...globalData,
-      user
+      user,
     })
   }
 
@@ -60,6 +60,6 @@ export const useGlobalContext = () => {
     notification: globalData?.notification,
     user: globalData.user,
     setNotification,
-    setUser
+    setUser,
   }
-} 
+}

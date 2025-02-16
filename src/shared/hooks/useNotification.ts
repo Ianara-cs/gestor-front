@@ -1,13 +1,13 @@
-import { notification as  notificationAnt } from "antd";
-import { useGlobalContext } from "./useGlobalContext";
-import { useEffect } from "react";
+import { notification as notificationAnt } from 'antd'
+import { useGlobalContext } from './useGlobalContext'
+import { useEffect } from 'react'
 
 export const useNotification = () => {
   const [api, contextHolder] = notificationAnt.useNotification()
-  const {notification} = useGlobalContext()
+  const { notification } = useGlobalContext()
 
   useEffect(() => {
-    if(notification?.message && notification.type) {
+    if (notification?.message && notification.type) {
       api[notification.type]({
         message: notification.message,
         description: notification.description,
@@ -18,6 +18,6 @@ export const useNotification = () => {
 
   return {
     api,
-    contextHolder
+    contextHolder,
   }
 }

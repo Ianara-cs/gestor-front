@@ -1,5 +1,5 @@
-import { Breadcrumb as BreadcrumbAnt} from "antd";
-import { Link, useNavigate } from "react-router";
+import { Breadcrumb as BreadcrumbAnt } from 'antd'
+import { Link, useNavigate } from 'react-router'
 
 export interface ListBreadcrumb {
   title: string
@@ -10,13 +10,8 @@ interface BreadcrumbProps {
   listBreadcrumb?: ListBreadcrumb[]
 }
 
-const Breadcrumb= ({ listBreadcrumb }: BreadcrumbProps) => {
-  
-  return (
-    <BreadcrumbAnt
-      items={listBreadcrumb} 
-    />
-  )
+const Breadcrumb = ({ listBreadcrumb }: BreadcrumbProps) => {
+  return <BreadcrumbAnt items={listBreadcrumb} />
 }
 
 export default Breadcrumb
