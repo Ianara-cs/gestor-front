@@ -40,8 +40,7 @@ export const useRequests = () => {
     return returnObject
   }
 
-  const authRequest = async (body: unknown, navigate: (path: string) => void) => {
-    // const navigate = useNavigate()
+  const authRequest = async (body: unknown) => {
     setLoading(true)
     // Simulando um login
     // await connectionAPIPost<AuthType>(URL_AUTH, body).then((result) => {
@@ -49,7 +48,7 @@ export const useRequests = () => {
       .then((result) => {
         setUser(result)
         setNotification('Entrando', 'success')
-        navigate(MenuRoutesEnum.MENU)
+        location.href = '/'
         return result
       })
       .catch(() => {
