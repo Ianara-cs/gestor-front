@@ -44,6 +44,6 @@ export const useDataContext = () => {
     menus: data?.menus || [],
     items: data?.items || [],
     setMenus: setMenus,
-    setItems
+    setItems,
   }
 }

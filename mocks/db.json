@@ -1,295 +1,295 @@
 {
   "menus": [
-  {
-    "id": "a0d59f42-aa74-4787-b02f-b82562f0b0cf",
-    "name": "Cervejas",
-    "category": "BAR",
-    "items": [
-      {
-        "id": "15a996f9-8e01-4809-908a-8d21ee82d17e",
-        "name": "Brahma 600ml",
-        "price": "9",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
-      },
-      {
-        "id": "f5455e99-e77a-4282-9374-fc60aabd478d",
-        "name": "Budweiser 600ml",
-        "price": "15",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
-      },
-      {
-        "id": "bb77ac66-870b-4812-8168-3f3fdc6a9609",
-        "name": "Heineken 600ml",
-        "price": "15",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
-      },
-      {
-        "id": "bbfb3c18-e27f-4ae3-aca3-5d8e51e14861",
-        "name": "Skol 600ml",
-        "price": "9",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
-      },
-      {
-        "id": "007c17ae-a929-42c7-bcb9-4f800066e8b0",
-        "name": "Stella 600ml",
-        "price": "15",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
-      }
-    ]
-  },
-  {
-    "id": "74c4dc0a-8d5b-4267-a1af-b117a564cf66",
-    "name": "Refrigerante",
-    "category": "BAR",
-    "items": [
-      {
-        "id": "ccf1fb4d-7f80-4dc9-a258-49cabfba7104",
-        "name": "Coca-cola 1L",
-        "price": "7",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
-      },
-      {
-        "id": "cd26cb8a-5934-41ff-af96-85387cb5c316",
-        "name": "Coca-cola 2L",
-        "price": "14",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
-      },
-      {
-        "id": "a7a8464c-3b83-427a-b17b-44dd521044b4",
-        "name": "Coca-cola - Lata",
-        "price": "5",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
-      },
-      {
-        "id": "d3fde76a-12dd-4c35-9ea5-5072e755885c",
-        "name": "Fanta Laranja 1L",
-        "price": "6",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
-      },
-      {
-        "id": "94a15f99-fae2-45c9-80ba-b96bc2faddb6",
-        "name": "Fanta Laranja 2L",
-        "price": "13",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
-      },
-      {
-        "id": "24d11f58-567d-4094-aff2-036f8ae32697",
-        "name": "Fanta Uva 1L",
-        "price": "6",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
-      },
-      {
-        "id": "c0c2e46b-098c-4110-941a-e4cf44f5f356",
-        "name": "Fanta Uva 2L",
-        "price": "13",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
-      }
-    ]
-  },
-  {
-    "id": "bdd82ff6-af92-41da-93dd-f8bac3ae61be",
-    "name": "Galinhas",
-    "category": "KITCHEN",
-    "items": [
-      {
-        "id": "084567b3-f949-46eb-914f-b341bf5e1ea9",
-        "name": "1/2 - Capão cozido",
-        "price": "100",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
-      },
-      {
-        "id": "85910bb4-9c03-4a3b-8f42-543fe79cfd0d",
-        "name": "1/2 - Galinha cozida",
-        "price": "65",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
-      },
-      {
-        "id": "3a6a83f7-3f93-411b-bfde-7d28391bd4c8",
-        "name": "1 - Capão cozido",
-        "price": "200",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
-      },
-      {
-        "id": "5be652c6-611f-4046-b334-96efe5c44073",
-        "name": "1 - Capote a Maria Izabel",
-        "price": "170",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
-      },
-      {
-        "id": "347cbde7-3b78-4c62-a06b-754a3a4c346f",
-        "name": "1 - Capote cozido",
-        "price": "170",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
-      },
-      {
-        "id": "dd8206e7-ecef-4cf6-9e86-12b14d7807df",
-        "name": "1 - Galinha cozida",
-        "price": "170",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
-      }
-    ]
-  },
-  {
-    "id": "02be74ef-2276-4c13-b310-89fd9f38f4e1",
-    "name": "Peixes",
-    "category": "KITCHEN",
-    "items": [
-      {
-        "id": "4b0493b6-7ae2-43be-830e-a245b694feed",
-        "name": "1/2 - Surubim cozido",
-        "price": "60",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      },
-      {
-        "id": "409a961a-7ecc-4008-bbfc-fbaf927d385e",
-        "name": "1/2 - Surubim frito",
-        "price": "60",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      },
-      {
-        "id": "87d3c259-1c9d-47a1-9318-a4380e728c28",
-        "name": "1/2 - Tilápia cozido",
-        "price": "50",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      },
-      {
-        "id": "43826b1f-67d8-4449-828f-759c9424eb5b",
-        "name": "1/2 - Tilápia frito",
-        "price": "50",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      },
-      {
-        "id": "12312b58-6be8-4fb0-899e-43de5da9eca8",
-        "name": "1 - Surubim cozido",
-        "price": "120",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      },
-      {
-        "id": "e67c9ea5-5247-4d1d-85f5-a1ad8329bc99",
-        "name": "1 - Surubim frito",
-        "price": "120",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      },
-      {
-        "id": "5bf947da-a5af-45a3-8df8-5aa77e768ef4",
-        "name": "1 - Tilápia cozida",
-        "price": "100",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      },
-      {
-        "id": "6985642c-b28b-4aba-a4c8-5a4ead717f7e",
-        "name": "1 - Tilápia frito",
-        "price": "100",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
-      }
-    ]
-  },
-  {
-    "id": "f8f714ca-fe03-4d8f-a183-20968a3d1016",
-    "name": "Sucos",
-    "category": "KITCHEN",
-    "items": [
-      {
-        "id": "550ac1ca-5b1f-46c5-9837-f83b6743e0bf",
-        "name": "Abacaxi - copo de 400ml",
-        "price": "6",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
-      },
-      {
-        "id": "b1f94513-afba-423b-be21-3374ebc03d18",
-        "name": "Acerola - copo de 400ml",
-        "price": "6",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
-      },
-      {
-        "id": "813265ed-2b21-41dd-bc65-bccd761ca13e",
-        "name": "Caju - copo de 400ml",
-        "price": "6",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
-      },
-      {
-        "id": "72a62413-036f-43a7-b09c-36cd5273005c",
-        "name": "Goiaba - copo de 400ml",
-        "price": "6",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
-      },
-      {
-        "id": "7fec98a4-b162-4275-8f5d-0757cbfa935f",
-        "name": "Maracujá - copo de 400ml",
-        "price": "6",
-        "imgUrl": null,
-        "quantityPeople": 0,
-        "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
-      }
-    ]
-  }],
-
+    {
+      "id": "a0d59f42-aa74-4787-b02f-b82562f0b0cf",
+      "name": "Cervejas",
+      "category": "BAR",
+      "items": [
+        {
+          "id": "15a996f9-8e01-4809-908a-8d21ee82d17e",
+          "name": "Brahma 600ml",
+          "price": "9",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
+        },
+        {
+          "id": "f5455e99-e77a-4282-9374-fc60aabd478d",
+          "name": "Budweiser 600ml",
+          "price": "15",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
+        },
+        {
+          "id": "bb77ac66-870b-4812-8168-3f3fdc6a9609",
+          "name": "Heineken 600ml",
+          "price": "15",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
+        },
+        {
+          "id": "bbfb3c18-e27f-4ae3-aca3-5d8e51e14861",
+          "name": "Skol 600ml",
+          "price": "9",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
+        },
+        {
+          "id": "007c17ae-a929-42c7-bcb9-4f800066e8b0",
+          "name": "Stella 600ml",
+          "price": "15",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "a0d59f42-aa74-4787-b02f-b82562f0b0cf"
+        }
+      ]
+    },
+    {
+      "id": "74c4dc0a-8d5b-4267-a1af-b117a564cf66",
+      "name": "Refrigerante",
+      "category": "BAR",
+      "items": [
+        {
+          "id": "ccf1fb4d-7f80-4dc9-a258-49cabfba7104",
+          "name": "Coca-cola 1L",
+          "price": "7",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
+        },
+        {
+          "id": "cd26cb8a-5934-41ff-af96-85387cb5c316",
+          "name": "Coca-cola 2L",
+          "price": "14",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
+        },
+        {
+          "id": "a7a8464c-3b83-427a-b17b-44dd521044b4",
+          "name": "Coca-cola - Lata",
+          "price": "5",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
+        },
+        {
+          "id": "d3fde76a-12dd-4c35-9ea5-5072e755885c",
+          "name": "Fanta Laranja 1L",
+          "price": "6",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
+        },
+        {
+          "id": "94a15f99-fae2-45c9-80ba-b96bc2faddb6",
+          "name": "Fanta Laranja 2L",
+          "price": "13",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
+        },
+        {
+          "id": "24d11f58-567d-4094-aff2-036f8ae32697",
+          "name": "Fanta Uva 1L",
+          "price": "6",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
+        },
+        {
+          "id": "c0c2e46b-098c-4110-941a-e4cf44f5f356",
+          "name": "Fanta Uva 2L",
+          "price": "13",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "74c4dc0a-8d5b-4267-a1af-b117a564cf66"
+        }
+      ]
+    },
+    {
+      "id": "bdd82ff6-af92-41da-93dd-f8bac3ae61be",
+      "name": "Galinhas",
+      "category": "KITCHEN",
+      "items": [
+        {
+          "id": "084567b3-f949-46eb-914f-b341bf5e1ea9",
+          "name": "1/2 - Capão cozido",
+          "price": "100",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
+        },
+        {
+          "id": "85910bb4-9c03-4a3b-8f42-543fe79cfd0d",
+          "name": "1/2 - Galinha cozida",
+          "price": "65",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
+        },
+        {
+          "id": "3a6a83f7-3f93-411b-bfde-7d28391bd4c8",
+          "name": "1 - Capão cozido",
+          "price": "200",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
+        },
+        {
+          "id": "5be652c6-611f-4046-b334-96efe5c44073",
+          "name": "1 - Capote a Maria Izabel",
+          "price": "170",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
+        },
+        {
+          "id": "347cbde7-3b78-4c62-a06b-754a3a4c346f",
+          "name": "1 - Capote cozido",
+          "price": "170",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
+        },
+        {
+          "id": "dd8206e7-ecef-4cf6-9e86-12b14d7807df",
+          "name": "1 - Galinha cozida",
+          "price": "170",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
+        }
+      ]
+    },
+    {
+      "id": "02be74ef-2276-4c13-b310-89fd9f38f4e1",
+      "name": "Peixes",
+      "category": "KITCHEN",
+      "items": [
+        {
+          "id": "4b0493b6-7ae2-43be-830e-a245b694feed",
+          "name": "1/2 - Surubim cozido",
+          "price": "60",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        },
+        {
+          "id": "409a961a-7ecc-4008-bbfc-fbaf927d385e",
+          "name": "1/2 - Surubim frito",
+          "price": "60",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        },
+        {
+          "id": "87d3c259-1c9d-47a1-9318-a4380e728c28",
+          "name": "1/2 - Tilápia cozido",
+          "price": "50",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        },
+        {
+          "id": "43826b1f-67d8-4449-828f-759c9424eb5b",
+          "name": "1/2 - Tilápia frito",
+          "price": "50",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        },
+        {
+          "id": "12312b58-6be8-4fb0-899e-43de5da9eca8",
+          "name": "1 - Surubim cozido",
+          "price": "120",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        },
+        {
+          "id": "e67c9ea5-5247-4d1d-85f5-a1ad8329bc99",
+          "name": "1 - Surubim frito",
+          "price": "120",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        },
+        {
+          "id": "5bf947da-a5af-45a3-8df8-5aa77e768ef4",
+          "name": "1 - Tilápia cozida",
+          "price": "100",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        },
+        {
+          "id": "6985642c-b28b-4aba-a4c8-5a4ead717f7e",
+          "name": "1 - Tilápia frito",
+          "price": "100",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
+        }
+      ]
+    },
+    {
+      "id": "f8f714ca-fe03-4d8f-a183-20968a3d1016",
+      "name": "Sucos",
+      "category": "KITCHEN",
+      "items": [
+        {
+          "id": "550ac1ca-5b1f-46c5-9837-f83b6743e0bf",
+          "name": "Abacaxi - copo de 400ml",
+          "price": "6",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
+        },
+        {
+          "id": "b1f94513-afba-423b-be21-3374ebc03d18",
+          "name": "Acerola - copo de 400ml",
+          "price": "6",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
+        },
+        {
+          "id": "813265ed-2b21-41dd-bc65-bccd761ca13e",
+          "name": "Caju - copo de 400ml",
+          "price": "6",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
+        },
+        {
+          "id": "72a62413-036f-43a7-b09c-36cd5273005c",
+          "name": "Goiaba - copo de 400ml",
+          "price": "6",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
+        },
+        {
+          "id": "7fec98a4-b162-4275-8f5d-0757cbfa935f",
+          "name": "Maracujá - copo de 400ml",
+          "price": "6",
+          "imgUrl": null,
+          "quantityPeople": 0,
+          "menuId": "f8f714ca-fe03-4d8f-a183-20968a3d1016"
+        }
+      ]
+    }
+  ],
 
   "items": [
     {
       "id": "dd8206e7-ecef-4cf6-9e86-12b14d7807df",
       "name": "1 - Galinha cozida",
-      "price": "170",
+      "price": "170,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
@@ -297,7 +297,7 @@
     {
       "id": "3a6a83f7-3f93-411b-bfde-7d28391bd4c8",
       "name": "1 - Capão cozido",
-      "price": "200",
+      "price": "200,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
@@ -305,7 +305,7 @@
     {
       "id": "5be652c6-611f-4046-b334-96efe5c44073",
       "name": "1 - Capote a Maria Izabel",
-      "price": "170",
+      "price": "170,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
@@ -313,7 +313,7 @@
     {
       "id": "347cbde7-3b78-4c62-a06b-754a3a4c346f",
       "name": "1 - Capote cozido",
-      "price": "170",
+      "price": "170,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "bdd82ff6-af92-41da-93dd-f8bac3ae61be"
@@ -321,7 +321,7 @@
     {
       "id": "4b0493b6-7ae2-43be-830e-a245b694feed",
       "name": "1/2 - Surubim cozido",
-      "price": "60",
+      "price": "60,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
@@ -329,7 +329,7 @@
     {
       "id": "409a961a-7ecc-4008-bbfc-fbaf927d385e",
       "name": "1/2 - Surubim frito",
-      "price": "60",
+      "price": "60,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
@@ -337,7 +337,7 @@
     {
       "id": "87d3c259-1c9d-47a1-9318-a4380e728c28",
       "name": "1/2 - Tilápia cozido",
-      "price": "50",
+      "price": "50,50",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
@@ -345,7 +345,7 @@
     {
       "id": "43826b1f-67d8-4449-828f-759c9424eb5b",
       "name": "1/2 - Tilápia frito",
-      "price": "50",
+      "price": "50,50",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
@@ -353,7 +353,7 @@
     {
       "id": "12312b58-6be8-4fb0-899e-43de5da9eca8",
       "name": "1 - Surubim cozido",
-      "price": "120",
+      "price": "120,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
@@ -361,7 +361,7 @@
     {
       "id": "e67c9ea5-5247-4d1d-85f5-a1ad8329bc99",
       "name": "1 - Surubim frito",
-      "price": "120",
+      "price": "120,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
@@ -369,7 +369,7 @@
     {
       "id": "5bf947da-a5af-45a3-8df8-5aa77e768ef4",
       "name": "1 - Tilápia cozida",
-      "price": "100",
+      "price": "100,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"
@@ -377,7 +377,7 @@
     {
       "id": "6985642c-b28b-4aba-a4c8-5a4ead717f7e",
       "name": "1 - Tilápia frito",
-      "price": "100",
+      "price": "100,00",
       "imgUrl": null,
       "quantityPeople": 0,
       "menuId": "02be74ef-2276-4c13-b310-89fd9f38f4e1"

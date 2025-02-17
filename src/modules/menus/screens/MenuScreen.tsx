@@ -13,6 +13,8 @@ import { MenuRoutesEnum } from '../routes'
 import Breadcrumb from '../../../shared/components/breadcrumb/Breadcrumb'
 import { BoxButtons, LimitSizeButton, LimitSizeInput } from '../styles/menuScreen.style'
 import { Input } from 'antd'
+import { FlexJustifyBetween } from '../../../shared/components/styles/display.styled'
+import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 const { Search } = Input
 
 const columns: ColumnsType<MenuType> = [
@@ -64,21 +66,18 @@ const MenuScreen = () => {
           title: 'HOME',
         },
         {
-          title: 'PRODUTOS',
+          title: 'MENUS',
         },
       ]}
     >
-      <Breadcrumb />
-      <BoxButtons>
-        <LimitSizeInput>
-          <Search placeholder="input search text" onSearch={onSearch} enterButton />
-        </LimitSizeInput>
-        <LimitSizeButton>
-          <Button type="primary" onClick={handleOnClick}>
-            Inserir
-          </Button>
-        </LimitSizeButton>
-      </BoxButtons>
+      <FlexJustifyBetween margin="16px 0px">
+        <LimitedContainer width={240}>
+          <Search placeholder="Nome do item" onSearch={onSearch} enterButton />
+        </LimitedContainer>
+        <LimitedContainer width={120}>
+          <Button type="primary">Inserir</Button>
+        </LimitedContainer>
+      </FlexJustifyBetween>
       <Table columns={columns} dataSource={menusFiltered} />
     </Screen>
   )

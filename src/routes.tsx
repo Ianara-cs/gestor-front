@@ -6,9 +6,11 @@ import { verifyLoggedIn } from './shared/functions/connection/auth'
 import { itemsScreens } from './modules/items/routes'
 
 const routes: RouteObject[] = [...loginRoutes]
-const routesLoggedIn: RouteObject[] = [...menuScreens, ...itemsScreens, ...firstScreenRoutes].map((route) => ({
-  ...route,
-  loader: verifyLoggedIn,
-}))
+const routesLoggedIn: RouteObject[] = [...menuScreens, ...itemsScreens, ...firstScreenRoutes].map(
+  (route) => ({
+    ...route,
+    loader: verifyLoggedIn,
+  }),
+)
 
 export const router = createBrowserRouter([...routes, ...routesLoggedIn])

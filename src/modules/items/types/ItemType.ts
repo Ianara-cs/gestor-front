@@ -3,6 +3,6 @@ export interface ItemType {
   name: string
   price: number
   imgUrl?: string
-  quantityPeople: number,
+  quantityPeople: number
   menuId: string
 }
