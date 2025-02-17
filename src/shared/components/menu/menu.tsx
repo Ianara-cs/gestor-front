@@ -5,6 +5,7 @@ import { Menu as MenuAnt } from 'antd'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../../../modules/menus/routes'
 import { useState } from 'react'
+import { ItemsRoutesEnum } from '../../../modules/items/routes'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -32,6 +33,18 @@ const Menu = () => {
           key: 'menus_insert',
           label: 'Inserir',
           onClick: () => navigate(MenuRoutesEnum.MENUS_INSERT),
+        },
+      ],
+    },
+    {
+      key: 'items',
+      label: 'Itens',
+      icon: <LaptopOutlined />,
+      children: [
+        {
+          key: 'items_view',
+          label: 'Visualizar',
+          onClick: () => navigate(ItemsRoutesEnum.ITEM),
         },
       ],
     },

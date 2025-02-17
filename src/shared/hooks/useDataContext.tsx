@@ -1,8 +1,10 @@
 import { createContext, useContext, useState } from 'react'
 import { MenuType } from '../../modules/menus/types/MenuType'
+import { ItemType } from '../../modules/items/types/ItemType'
 
 interface DataContext {
   menus?: MenuType[]
+  items?: ItemType[]
 }
 
 interface DataContextProps {
@@ -23,14 +25,25 @@ export const DataProvider = ({ children }: DataProviderProps) => {
 
 export const useDataContext = () => {
   const { data, setData } = useContext(DataContext)
+
   const setMenus = (menus: MenuType[]) => {
     setData({
       ...data,
       menus: menus,
     })
   }
+
+  const setItems = (items: ItemType[]) => {
+    setData({
+      ...data,
+      items,
+    })
+  }
+
   return {
     menus: data?.menus || [],
+    items: data?.items || [],
     setMenus: setMenus,
+    setItems
   }
 }
