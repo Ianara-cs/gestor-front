@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input/input'
 import InputMoney from '../../../shared/components/inputs/inputMoney/inputMoney'
@@ -10,52 +9,19 @@ import {
 } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { useMenu } from '../../menus/hooks/useMenu'
-import { InsertItem } from '../../../shared/dtos/insertItem.dto'
-import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI'
-import { URL_ITEM } from '../../../shared/constants/urls'
-import { useNavigate } from 'react-router'
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext'
-import { ItemsRoutesEnum } from '../routes'
+import { useInsertItem } from '../hooks/useInsertItem'
 
 const ItemInsert = () => {
   const { menusFiltered } = useMenu()
-  const navigate = useNavigate()
-  const { setNotification } = useGlobalContext()
-  const [item, setItem] = useState<InsertItem>({
-    name: '',
-    quantityPeople: 0,
-    price: 0,
-    menuId: '',
-  })
-
-  const onChangeInput = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    nameObject: string,
-    isNumber?: boolean,
-  ) => {
-    setItem({
-      ...item,
-      [nameObject]: isNumber ? Number(event.target.value) : event.target.value,
-    })
-  }
-
-  const handleChangeSelect = (value: string) => {
-    setItem({
-      ...item,
-      menuId: value,
-    })
-  }
-
-  const handleInsertItem = async () => {
-    await connectionAPIPost(URL_ITEM, item)
-      .then(() => {
-        setNotification('Sucesso!', 'success', 'Item inserido com sucesso!')
-        navigate(ItemsRoutesEnum.ITEM)
-      })
-      .catch((error: Error) => {
-        setNotification(error.message, 'error')
-      })
-  }
+  const {
+    item,
+    loading,
+    disabledButton,
+    handleChangeSelect,
+    handleInsertItem,
+    handleClickCancel,
+    onChangeInput,
+  } = useInsertItem()
 
   return (
     <Screen>
@@ -97,12 +63,14 @@ const ItemInsert = () => {
           />
           <DisplayFlexJustifyRight>
             <LimitedContainer margin="0px 8px" width={120}>
-              <Button danger>Cancelar</Button>
+              <Button danger onClick={handleClickCancel}>
+                Cancelar
+              </Button>
             </LimitedContainer>
             <LimitedContainer width={120}>
               <Button
-                // loading={loading}
-                // disabled={disabledButton}
+                loading={loading}
+                disabled={disabledButton}
                 onClick={handleInsertItem}
                 type="primary"
               >
