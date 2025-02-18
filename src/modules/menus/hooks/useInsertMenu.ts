@@ -25,7 +25,6 @@ export const useInsertMenu = () => {
   }, [menu])
 
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`)
     setMenu({
       ...menu,
       category: value,

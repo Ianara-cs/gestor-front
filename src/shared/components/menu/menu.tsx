@@ -46,6 +46,11 @@ const Menu = () => {
           label: 'Visualizar',
           onClick: () => navigate(ItemsRoutesEnum.ITEM),
         },
+        {
+          key: 'items_insert',
+          label: 'Inserir',
+          onClick: () => navigate(ItemsRoutesEnum.ITEM_INSERT),
+        },
       ],
     },
   ]

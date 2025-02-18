@@ -13,7 +13,7 @@ function App() {
   const { request } = useRequests()
 
   useEffect(() => {
-    request(URL_USER, MethodsEnum.GET, setUser).then(() => console.log('DDDD'))
+    request(URL_USER, MethodsEnum.GET, setUser)
   }, [])
 
   return (

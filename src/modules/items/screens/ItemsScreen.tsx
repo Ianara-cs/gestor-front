@@ -38,7 +38,7 @@ const columns: ColumnsType<ItemType> = [
 ]
 
 const ItemsScreen = () => {
-  const { itemsFiltered, onSearch } = useItem()
+  const { itemsFiltered, onSearch, handleOnClick } = useItem()
 
   return (
     <Screen
@@ -56,7 +56,9 @@ const ItemsScreen = () => {
           <Search placeholder="Nome do item" onSearch={onSearch} enterButton />
         </LimitedContainer>
         <LimitedContainer width={120}>
-          <Button type="primary">Inserir</Button>
+          <Button onClick={handleOnClick} type="primary">
+            Inserir
+          </Button>
         </LimitedContainer>
       </FlexJustifyBetween>
       <Table columns={columns} dataSource={itemsFiltered} />
