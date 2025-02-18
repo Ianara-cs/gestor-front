@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router'
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext'
 import { InsertItem } from '../../../shared/dtos/insertItem.dto'
 import { useEffect, useState } from 'react'
 import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI'
 import { URL_ITEM } from '../../../shared/constants/urls'
 import { ItemsRoutesEnum } from '../routes'
+import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer'
 
 export const useInsertItem = () => {
   const navigate = useNavigate()
-  const { setNotification } = useGlobalContext()
+  const { setNotification } = useGlobalReducer()
   const [loading, setLoading] = useState<boolean>(false)
   const [disabledButton, setDisabledButton] = useState<boolean>(true)
   const [item, setItem] = useState<InsertItem>({

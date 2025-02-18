@@ -5,11 +5,11 @@ import { useRequests } from './shared/hooks/useRequest'
 import { useEffect } from 'react'
 import { URL_USER } from './shared/constants/urls'
 import { MethodsEnum } from './shared/enums/methods.enum'
-import { useGlobalContext } from './shared/hooks/useGlobalContext'
+import { useGlobalReducer } from './store/reducers/globalReducer/useGlobalReducer'
 
 function App() {
   const { contextHolder } = useNotification()
-  const { setUser } = useGlobalContext()
+  const { setUser } = useGlobalReducer()
   const { request } = useRequests()
 
   useEffect(() => {

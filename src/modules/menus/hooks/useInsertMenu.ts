@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import { InsertMenu } from '../../../shared/dtos/insertMenu.dto'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../routes'
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext'
 import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI'
 import { URL_MENU } from '../../../shared/constants/urls'
+import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer'
 
 export const useInsertMenu = () => {
   const navigate = useNavigate()
-  const { setNotification } = useGlobalContext()
+  const { setNotification } = useGlobalReducer()
   const [menu, setMenu] = useState<InsertMenu>({
     name: '',
     category: '',

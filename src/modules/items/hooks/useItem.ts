@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useDataContext } from '../../../shared/hooks/useDataContext'
 import { useRequests } from '../../../shared/hooks/useRequest'
 import { ItemType } from '../types/ItemType'
 import { URL_ITEM } from '../../../shared/constants/urls'
 import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { useNavigate } from 'react-router'
 import { ItemsRoutesEnum } from '../routes'
+import { useItemReducer } from '../../../store/reducers/itemReducer/useItemReducer'
 
 export const useItem = () => {
-  const { items, setItems } = useDataContext()
+  const { items, setItems } = useItemReducer()
   const { request } = useRequests()
   const [itemsFiltered, setItemsFiltered] = useState<ItemType[]>([])
   const navigate = useNavigate()

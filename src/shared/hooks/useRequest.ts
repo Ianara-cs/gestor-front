@@ -1,20 +1,15 @@
 import { useState } from 'react'
-import { useGlobalContext } from './useGlobalContext'
-import ConnectionAPI, {
-  connectionAPIGet,
-  connectionAPIPost,
-  MethodType,
-} from '../functions/connection/connectionAPI'
+import ConnectionAPI, { connectionAPIGet, MethodType } from '../functions/connection/connectionAPI'
 import { NavigateFunction } from 'react-router'
-import { AuthType } from '../../modules/login/types/AuthType'
-import { URL_AUTH, URL_USER } from '../constants/urls'
+import { URL_USER } from '../constants/urls'
 import { ERROR_INVALID_PASSWORD } from '../constants/errosStatus'
 import { UserType } from '../../modules/login/types/UserType'
 import { FirstScreenRoutesEnum } from '../../modules/firstScreen/routes'
+import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer'
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false)
-  const { setNotification, setUser } = useGlobalContext()
+  const { setNotification, setUser } = useGlobalReducer()
 
   const request = async <T>(
     url: string,
