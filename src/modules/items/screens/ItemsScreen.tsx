@@ -7,6 +7,7 @@ import { LimitedContainer } from '../../../shared/components/styles/limited.styl
 import Button from '../../../shared/components/buttons/button/button'
 import { Input } from 'antd'
 import { useItem } from '../hooks/useItem'
+import { convertNumberToMoney } from '../../../shared/functions/money'
 const { Search } = Input
 
 const columns: ColumnsType<ItemType> = [
@@ -21,7 +22,7 @@ const columns: ColumnsType<ItemType> = [
     title: 'Preço',
     dataIndex: 'price',
     key: 'price',
-    render: (text) => <a>{text}</a>,
+    render: (_, item) => <a>{convertNumberToMoney(parseFloat(`${item.price}`))}</a>,
   },
   {
     title: 'Quant. de Pessoas',
