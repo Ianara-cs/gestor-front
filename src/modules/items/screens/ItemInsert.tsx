@@ -10,6 +10,7 @@ import {
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { useMenu } from '../../menus/hooks/useMenu'
 import { useInsertItem } from '../hooks/useInsertItem'
+import { ItemsRoutesEnum } from '../routes'
 
 const ItemInsert = () => {
   const { menusFiltered } = useMenu()
@@ -24,7 +25,20 @@ const ItemInsert = () => {
   } = useInsertItem()
 
   return (
-    <Screen>
+    <Screen
+      listBreadcrumb={[
+        {
+          title: 'HOME',
+        },
+        {
+          title: 'ITENS',
+          href: ItemsRoutesEnum.ITEM,
+        },
+        {
+          title: 'INSERIR MENU',
+        },
+      ]}
+    >
       <FlexJustifyCenter>
         <LimitedContainer width={400}>
           <Input
