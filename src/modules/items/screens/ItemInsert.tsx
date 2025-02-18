@@ -35,7 +35,7 @@ const ItemInsert = () => {
           href: ItemsRoutesEnum.ITEM,
         },
         {
-          title: 'INSERIR MENU',
+          title: 'INSERIR ITENS',
         },
       ]}
     >
