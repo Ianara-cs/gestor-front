@@ -7,26 +7,38 @@ import { Input } from 'antd'
 import { FlexJustifyBetween } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { useMenu } from '../hooks/useMenu'
+import { useMemo } from 'react'
 const { Search } = Input
 
-const columns: ColumnsType<MenuType> = [
-  {
-    title: 'Nome',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
-    sorter: (a, b) => a.name.localeCompare(b.name),
-  },
-  {
-    title: 'Categoria',
-    dataIndex: 'category',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
-  },
-]
 
 const MenuScreen = () => {
-  const { handleOnClick, menusFiltered, onSearch } = useMenu()
+  const { handleOnClick, menusFiltered, onSearch, handleDeleteProduct } = useMenu()
+
+  const columns: ColumnsType<MenuType> = useMemo(() => [
+    {
+      title: 'Nome',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <a>{text}</a>,
+      sorter: (a, b) => a.name.localeCompare(b.name),
+    },
+    {
+      title: 'Categoria',
+      dataIndex: 'category',
+      key: 'category',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Ações',
+      dataIndex: '',
+      key: 'x',
+      render: (_, menu) => 
+      <>
+        <a onClick={() => handleDeleteProduct(menu.id)}>Deletar</a>
+        {/* <a onClick={() => handleDeleteProduct(menu.id)}>Editar</a> */}
+      </>
+    },
+  ], [])
 
   return (
     <Screen

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MenuType } from '../types/MenuType'
-import { URL_MENU } from '../../../shared/constants/urls'
+import { URL_MENU, URL_MENU_ID } from '../../../shared/constants/urls'
 import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { MenuRoutesEnum } from '../routes'
 import { useRequests } from '../../../shared/hooks/useRequest'
@@ -33,9 +33,15 @@ export const useMenu = () => {
     }
   }
 
+  const handleDeleteProduct = async (menuId: string) => {
+    await request(URL_MENU_ID.replace('{menuId}', `${menuId}`), MethodsEnum.DELETE)
+    await request(URL_MENU, MethodsEnum.GET, setMenus)
+  }
+
   return {
     menusFiltered,
     handleOnClick,
     onSearch,
+    handleDeleteProduct,
   }
 }
