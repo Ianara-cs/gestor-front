@@ -5,6 +5,7 @@ import { ResponsiveMenuProps } from '../../types/StyledTypes'
 const { Text } = Typography
 
 export const ContainerMenu = styled.div<ResponsiveMenuProps>`
+  height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
@@ -16,14 +17,14 @@ export const ContainerMenu = styled.div<ResponsiveMenuProps>`
   -moz-box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
   box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   @media (max-width: 768px) {
-    /* width: 0px;
-    left: -200px; */
     position: ${({ buttonCollapsed }) => (buttonCollapsed ? 'relative' : 'fixed')};
     left: ${({ buttonCollapsed }) => (buttonCollapsed ? '-200px' : '0')};
-    width: ${({ buttonCollapsed }) =>
-      buttonCollapsed ? '0px' : '240px'}; /* Define o tamanho do menu */
-    /* height: 100vh; */
+    width: ${({ buttonCollapsed }) => (buttonCollapsed ? '0px' : '240px')};
     background-color: #001529;
     transition: all 0.3s ease-in-out;
     z-index: ${({ buttonCollapsed }) => (buttonCollapsed ? '1' : '1000')};
@@ -64,7 +65,34 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); // Fundo escuro semitransparente
-  backdrop-filter: blur(5px); // Efeito de desfoque
-  z-index: 9; // Acima dos elementos normais, mas abaixo do menu
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 9;
+`
+
+export const MenuContent = styled.div`
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+`
+
+export const FooterMenu = styled.div`
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #001529;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: sticky;
+  bottom: 0;
+  width: 100%;
 `

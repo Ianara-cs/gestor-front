@@ -4,7 +4,15 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons'
-import { ContainerLogoName, ContainerMenu, LogoMenu, NameCompany, Overlay } from './menu.styled'
+import {
+  ContainerLogoName,
+  ContainerMenu,
+  FooterMenu,
+  LogoMenu,
+  MenuContent,
+  NameCompany,
+  Overlay,
+} from './menu.styled'
 import type { MenuProps } from 'antd'
 import { Menu as MenuAnt } from 'antd'
 import { useNavigate } from 'react-router'
@@ -14,25 +22,23 @@ import { ItemsRoutesEnum } from '../../../modules/items/routes'
 import Button from '../buttons/button/button'
 import { useButtonMenuCollapsedReducer } from '../../../store/reducers/buttonMenuCollapsedReducer/buttonMenuCollapsedReducer'
 import { useScreenSizeReducer } from '../../../store/reducers/screenSizeReducer/useScreenSizeReducer'
+import { FlexJustifyCenter } from '../styles/display.styled'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
 const Menu = () => {
   const navigate = useNavigate()
-  const [current, setCurrent] = useState('1')
+  const [current, setCurrent] = useState('menus')
   const { buttonMenuActivate, setButtonMenuCollapsed } = useButtonMenuCollapsedReducer()
   const { screenSize } = useScreenSizeReducer()
 
   const toggleCollapsed = () => {
     setButtonMenuCollapsed(!buttonMenuActivate)
-    console.log('MENU1', buttonMenuActivate)
   }
-
-  console.log('MENU', buttonMenuActivate)
 
   const items: MenuItem[] = [
     {
-      key: 'home',
+      key: '1',
       label: 'Principal',
       icon: <HomeOutlined />,
     },
@@ -42,12 +48,12 @@ const Menu = () => {
       icon: <LaptopOutlined />,
       children: [
         {
-          key: 'menus_view',
+          key: '2',
           label: 'Visualizar',
           onClick: () => navigate(MenuRoutesEnum.MENU),
         },
         {
-          key: 'menus_insert',
+          key: '3',
           label: 'Inserir',
           onClick: () => navigate(MenuRoutesEnum.MENUS_INSERT),
         },
@@ -59,12 +65,12 @@ const Menu = () => {
       icon: <LaptopOutlined />,
       children: [
         {
-          key: 'items_view',
+          key: '4',
           label: 'Visualizar',
           onClick: () => navigate(ItemsRoutesEnum.ITEM),
         },
         {
-          key: 'items_insert',
+          key: '5',
           label: 'Inserir',
           onClick: () => navigate(ItemsRoutesEnum.ITEM_INSERT),
         },
@@ -82,25 +88,30 @@ const Menu = () => {
         <Overlay onClick={() => setButtonMenuCollapsed(true)} />
       )}
       <ContainerMenu buttonCollapsed={buttonMenuActivate}>
-        <ContainerLogoName buttonCollapsed={buttonMenuActivate}>
-          <LogoMenu buttonCollapsed={buttonMenuActivate} />
-          <NameCompany buttonCollapsed={buttonMenuActivate}>Gestor CG</NameCompany>
-        </ContainerLogoName>
-        <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-          {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </Button>
-        <MenuAnt
-          defaultSelectedKeys={['menus']}
-          selectedKeys={[current]}
-          mode="inline"
-          theme="dark"
-          onClick={onClick}
-          inlineCollapsed={buttonMenuActivate}
-          items={[...items]}
-        />
-        <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-          {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </Button>
+        <div className="nome">
+          <ContainerLogoName buttonCollapsed={buttonMenuActivate}>
+            <LogoMenu buttonCollapsed={buttonMenuActivate} />
+            <NameCompany buttonCollapsed={buttonMenuActivate}>Gestor CG</NameCompany>
+          </ContainerLogoName>
+          <MenuContent>
+            <MenuAnt
+              defaultSelectedKeys={['2']}
+              defaultOpenKeys={['menus']}
+              selectedKeys={[current]}
+              mode="inline"
+              theme="dark"
+              onClick={onClick}
+              inlineCollapsed={buttonMenuActivate}
+              items={items}
+            />
+          </MenuContent>
+        </div>
+        <FooterMenu>
+          <Button type="primary" onClick={toggleCollapsed} style={{ margin: 16 }}>
+            {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            {!buttonMenuActivate && 'Fechar Menu'}
+          </Button>
+        </FooterMenu>
       </ContainerMenu>
     </>
   )
