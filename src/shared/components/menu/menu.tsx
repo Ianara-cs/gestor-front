@@ -1,17 +1,34 @@
-import { HomeOutlined, LaptopOutlined } from '@ant-design/icons'
-import { ContainerLogoName, ContainerMenu, LogoMenu, NameCompany } from './menu.styled'
+import {
+  HomeOutlined,
+  LaptopOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons'
+import { ContainerLogoName, ContainerMenu, LogoMenu, NameCompany, Overlay } from './menu.styled'
 import type { MenuProps } from 'antd'
 import { Menu as MenuAnt } from 'antd'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../../../modules/menus/routes'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ItemsRoutesEnum } from '../../../modules/items/routes'
+import Button from '../buttons/button/button'
+import { useButtonMenuCollapsedReducer } from '../../../store/reducers/buttonMenuCollapsedReducer/buttonMenuCollapsedReducer'
+import { useScreenSizeReducer } from '../../../store/reducers/screenSizeReducer/useScreenSizeReducer'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
 const Menu = () => {
   const navigate = useNavigate()
   const [current, setCurrent] = useState('1')
+  const { buttonMenuActivate, setButtonMenuCollapsed } = useButtonMenuCollapsedReducer()
+  const { screenSize } = useScreenSizeReducer()
+
+  const toggleCollapsed = () => {
+    setButtonMenuCollapsed(!buttonMenuActivate)
+    console.log('MENU1', buttonMenuActivate)
+  }
+
+  console.log('MENU', buttonMenuActivate)
 
   const items: MenuItem[] = [
     {
@@ -60,22 +77,32 @@ const Menu = () => {
   }
 
   return (
-    <ContainerMenu>
-      <ContainerLogoName>
-        <LogoMenu />
-        <NameCompany>Gestor CG</NameCompany>
-      </ContainerLogoName>
-      <MenuAnt
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        style={{ width: 240 }}
-        selectedKeys={[current]}
-        mode="inline"
-        theme="dark"
-        onClick={onClick}
-        items={items}
-      />
-    </ContainerMenu>
+    <>
+      {screenSize?.isMobile && !buttonMenuActivate && (
+        <Overlay onClick={() => setButtonMenuCollapsed(true)} />
+      )}
+      <ContainerMenu buttonCollapsed={buttonMenuActivate}>
+        <ContainerLogoName buttonCollapsed={buttonMenuActivate}>
+          <LogoMenu buttonCollapsed={buttonMenuActivate} />
+          <NameCompany buttonCollapsed={buttonMenuActivate}>Gestor CG</NameCompany>
+        </ContainerLogoName>
+        <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+          {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </Button>
+        <MenuAnt
+          defaultSelectedKeys={['menus']}
+          selectedKeys={[current]}
+          mode="inline"
+          theme="dark"
+          onClick={onClick}
+          inlineCollapsed={buttonMenuActivate}
+          items={[...items]}
+        />
+        <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+          {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </Button>
+      </ContainerMenu>
+    </>
   )
 }
 

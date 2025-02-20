@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../../store'
-import { MenuType } from '../../../modules/menus/types/MenuType'
 import { UserType } from '../../../modules/login/types/UserType'
 import { NotificationType } from '../../../shared/types/NotificationType'
 
@@ -15,7 +13,7 @@ const initialState: GlobalState = {
 }
 
 export const globalSlice = createSlice({
-  name: 'menuReduce',
+  name: 'globalReduce',
   initialState,
   reducers: {
     setNotificationActions: (state, action: PayloadAction<NotificationType>) => {
