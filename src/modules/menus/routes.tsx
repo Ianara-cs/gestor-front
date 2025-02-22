@@ -3,17 +3,22 @@ import MenuScreen from './screens/MenuScreen'
 import MenuInsert from './screens/MenuInsert'
 
 export enum MenuRoutesEnum {
-  MENU = '/menus',
-  MENUS_INSERT = '/menus/insert',
+  MENUS = '/menus',
+  MENU_INSERT = '/menus/insert',
+  MENU_EDIT = '/menus/:menuId',
 }
 
 export const menuScreens: RouteObject[] = [
   {
-    path: MenuRoutesEnum.MENU,
+    path: MenuRoutesEnum.MENUS,
     element: <MenuScreen />,
   },
   {
-    path: MenuRoutesEnum.MENUS_INSERT,
+    path: MenuRoutesEnum.MENU_INSERT,
+    element: <MenuInsert />,
+  },
+  {
+    path: MenuRoutesEnum.MENU_EDIT,
     element: <MenuInsert />,
   },
 ]

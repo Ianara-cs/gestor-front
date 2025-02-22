@@ -2,19 +2,57 @@ import { useEffect, useState } from 'react'
 import { InsertMenu } from '../../../shared/dtos/insertMenu.dto'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../routes'
-import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI'
-import { URL_MENU } from '../../../shared/constants/urls'
-import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer'
+import { URL_MENU, URL_MENU_ID } from '../../../shared/constants/urls'
+import { useRequests } from '../../../shared/hooks/useRequest'
+import { useMenuReducer } from '../../../store/reducers/menuReducer/useMenuReducer'
+import { MethodsEnum } from '../../../shared/enums/methods.enum'
 
-export const useInsertMenu = () => {
+const DEFAULT_MENU = {
+  name: '',
+  category: '',
+}
+
+export const useInsertMenu = (menuId?: string) => {
   const navigate = useNavigate()
-  const { setNotification } = useGlobalReducer()
+  const {request, loading} = useRequests()
+  const { menu: menuReducer, setMenu: setMenuReducer} = useMenuReducer()
   const [menu, setMenu] = useState<InsertMenu>({
     name: '',
     category: '',
   })
-  const [loading, setLoading] = useState(false)
+  const [loadingMenu, setLoadingMenu] = useState(false)
   const [disabledButton, setDisabledButton] = useState(true)
+  const [isEdit, setIsEdit] = useState(false)
+
+  useEffect(() => {
+    if(menuReducer) {
+      setMenu({
+        name: menuReducer.name,
+        category: menuReducer.category
+      })
+    }
+  }, [menuReducer]) 
+
+  useEffect(() => {
+    const findMenu = async() => {
+      setLoadingMenu(true)
+      await request(
+        URL_MENU_ID.replace('{menuId}', 
+        `${menuId}`),
+        MethodsEnum.GET, 
+        setMenuReducer
+      )
+      setLoadingMenu(false)
+    }
+
+    if(menuId) {
+      setIsEdit(true)
+      findMenu()
+    } else {
+      setMenuReducer(undefined);
+      setMenu(DEFAULT_MENU);
+    }
+  }, [menuId])
 
   useEffect(() => {
     if (menu.name && menu.category) {
@@ -39,24 +77,22 @@ export const useInsertMenu = () => {
   }
 
   const handleClickCancel = () => {
-    navigate(MenuRoutesEnum.MENU)
+    navigate(MenuRoutesEnum.MENUS)
   }
 
   const handleInsertMenu = async () => {
-    if (!menu.name && !menu.category) {
-      setNotification('Campos vazios!', 'warning', '"nome" e "categoria" não podem ser vazios')
+    if(menuId) {
+      await request(
+        URL_MENU_ID.replace('{menuId}', menuId),
+        MethodsEnum.PUT,
+        undefined,
+        menu,
+        'Cardápio modificado!'
+      )
     } else {
-      setLoading(true)
-      await connectionAPIPost(URL_MENU, menu)
-        .then(() => {
-          setNotification('Sucesso!', 'success', 'Menu inserido com sucesso!')
-          navigate(MenuRoutesEnum.MENU)
-        })
-        .catch((error: Error) => {
-          setNotification(error.message, 'error')
-        })
-      setLoading(false)
+      await request(URL_MENU, MethodsEnum.POST, undefined, menu, 'Cardápio criado!')
     }
+    navigate(MenuRoutesEnum.MENUS)
   }
 
   return {
@@ -64,8 +100,10 @@ export const useInsertMenu = () => {
     onChange,
     handleClickCancel,
     handleInsertMenu,
+    isEdit,
     menu,
     loading,
     disabledButton,
+    loadingMenu,
   }
 }

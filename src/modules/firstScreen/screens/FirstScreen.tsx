@@ -7,7 +7,7 @@ const FirstScreen = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    navigate(MenuRoutesEnum.MENU)
+    navigate(MenuRoutesEnum.MENUS)
   }, [])
 
   return <Spin />

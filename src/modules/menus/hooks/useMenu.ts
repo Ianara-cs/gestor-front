@@ -22,7 +22,7 @@ export const useMenu = () => {
   }, [])
 
   const handleOnClick = () => {
-    navigate(MenuRoutesEnum.MENUS_INSERT)
+    navigate(MenuRoutesEnum.MENU_INSERT)
   }
 
   const onSearch = (value: string) => {
@@ -33,15 +33,20 @@ export const useMenu = () => {
     }
   }
 
-  const handleDeleteProduct = async (menuId: string) => {
+  const handleDeleteMenu = async (menuId: string) => {
     await request(URL_MENU_ID.replace('{menuId}', `${menuId}`), MethodsEnum.DELETE)
     await request(URL_MENU, MethodsEnum.GET, setMenus)
+  }
+
+  const handleEditMenu = async (menuId: string) => {
+    navigate(MenuRoutesEnum.MENU_EDIT.replace(':menuId', `${menuId}`))
   }
 
   return {
     menusFiltered,
     handleOnClick,
     onSearch,
-    handleDeleteProduct,
+    handleDeleteMenu,
+    handleEditMenu,
   }
 }

@@ -4,15 +4,22 @@ import Table from '../../../shared/components/table/Table'
 import Screen from '../../../shared/components/screen/Screen'
 import Button from '../../../shared/components/buttons/button/button'
 import { Input } from 'antd'
-import { FlexJustifyBetween } from '../../../shared/components/styles/display.styled'
+import { FlexJustifyBetween, FlexJustifyCenter } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { useMenu } from '../hooks/useMenu'
 import { useMemo } from 'react'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 const { Search } = Input
 
 
 const MenuScreen = () => {
-  const { handleOnClick, menusFiltered, onSearch, handleDeleteProduct } = useMenu()
+  const { 
+    handleOnClick, 
+    menusFiltered, 
+    onSearch, 
+    handleDeleteMenu, 
+    handleEditMenu,
+  } = useMenu()
 
   const columns: ColumnsType<MenuType> = useMemo(() => [
     {
@@ -31,12 +38,13 @@ const MenuScreen = () => {
     {
       title: 'Ações',
       dataIndex: '',
+      width: 240,
       key: 'x',
       render: (_, menu) => 
-      <>
-        <a onClick={() => handleDeleteProduct(menu.id)}>Deletar</a>
-        {/* <a onClick={() => handleDeleteProduct(menu.id)}>Editar</a> */}
-      </>
+      <FlexJustifyCenter>
+        <Button margin="0px 16px 0px 0px" onClick={() => handleEditMenu(menu.id)} icon={<EditOutlined />}>Editar</Button>
+        <Button danger onClick={() => handleDeleteMenu(menu.id)} icon={<DeleteOutlined />}>Deletar</Button>
+      </FlexJustifyCenter>
     },
   ], [])
 

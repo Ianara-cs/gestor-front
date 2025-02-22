@@ -3,10 +3,12 @@ import { MenuType } from '../../../modules/menus/types/MenuType'
 
 export interface MenuState {
   menus: MenuType[]
+  menu?: MenuType
 }
 
 const initialState: MenuState = {
   menus: [],
+  menu: undefined,
 }
 
 export const counterSlice = createSlice({
@@ -16,9 +18,12 @@ export const counterSlice = createSlice({
     setMenusActions: (state, action: PayloadAction<MenuType[]>) => {
       state.menus = action.payload
     },
+    setMenuActions: (state, action: PayloadAction<MenuType | undefined>) => {
+      state.menu = action.payload
+    },
   },
 })
 
-export const { setMenusActions } = counterSlice.actions
+export const { setMenusActions, setMenuActions } = counterSlice.actions
 
 export default counterSlice.reducer

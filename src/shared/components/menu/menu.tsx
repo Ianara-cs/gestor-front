@@ -50,12 +50,12 @@ const Menu = () => {
         {
           key: '2',
           label: 'Visualizar',
-          onClick: () => navigate(MenuRoutesEnum.MENU),
+          onClick: () => navigate(MenuRoutesEnum.MENUS),
         },
         {
           key: '3',
           label: 'Inserir',
-          onClick: () => navigate(MenuRoutesEnum.MENUS_INSERT),
+          onClick: () => navigate(MenuRoutesEnum.MENU_INSERT),
         },
       ],
     },
