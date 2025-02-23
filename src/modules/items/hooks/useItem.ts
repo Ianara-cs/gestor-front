@@ -33,9 +33,14 @@ export const useItem = () => {
     navigate(ItemsRoutesEnum.ITEM_INSERT)
   }
 
+  const handleEditItem = (itemId: string) => {
+    navigate(ItemsRoutesEnum.ITEM_EDIT.replace(':itemId', `${itemId}`))
+  }
+
   return {
     itemsFiltered,
     onSearch,
     handleOnClick,
+    handleEditItem,
   }
 }

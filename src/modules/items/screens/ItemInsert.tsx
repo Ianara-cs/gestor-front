@@ -2,6 +2,7 @@ import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input/input'
 import InputMoney from '../../../shared/components/inputs/inputMoney/inputMoney'
 import Select from '../../../shared/components/inputs/select/select'
+import Loading from '../../../shared/components/loading/Loading'
 import Screen from '../../../shared/components/screen/Screen'
 import {
   DisplayFlexJustifyRight,
@@ -18,6 +19,8 @@ const ItemInsert = () => {
     item,
     loading,
     disabledButton,
+    loadingItem,
+    isEdit,
     handleChangeSelect,
     handleInsertItem,
     handleClickCancel,
@@ -35,11 +38,11 @@ const ItemInsert = () => {
           href: ItemsRoutesEnum.ITEM,
         },
         {
-          title: 'INSERIR ITENS',
+          title: isEdit ? 'EDITAR ITEM':'INSERIR ITEM',
         },
       ]}
     >
-      <FlexJustifyCenter>
+      {loadingItem ? <Loading/> : <FlexJustifyCenter>
         <LimitedContainer width={400}>
           <Input
             onChange={(event) => onChangeInput(event, 'name')}
@@ -66,6 +69,7 @@ const ItemInsert = () => {
           />
           <Select
             title="Menu"
+            defaultValue={item.menuId}
             margin={'0px 0px 32px 0px'}
             placeholder="Escolha uma categoria"
             style={{ width: '100%' }}
@@ -88,12 +92,12 @@ const ItemInsert = () => {
                 onClick={handleInsertItem}
                 type="primary"
               >
-                Inserir Menu
+                {isEdit ? 'Salvar' : 'Inserir Menu'}
               </Button>
             </LimitedContainer>
           </DisplayFlexJustifyRight>
         </LimitedContainer>
-      </FlexJustifyCenter>
+      </FlexJustifyCenter>}
     </Screen>
   )
 }

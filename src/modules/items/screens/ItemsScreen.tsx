@@ -2,44 +2,62 @@ import { ColumnsType } from 'antd/es/table'
 import Screen from '../../../shared/components/screen/Screen'
 import Table from '../../../shared/components/table/Table'
 import { ItemType } from '../types/ItemType'
-import { FlexJustifyBetween } from '../../../shared/components/styles/display.styled'
+import { FlexJustifyBetween, FlexJustifyCenter } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import Button from '../../../shared/components/buttons/button/button'
 import { Input } from 'antd'
 import { useItem } from '../hooks/useItem'
 import { convertNumberToMoney } from '../../../shared/functions/money'
+import { useMemo } from 'react'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 const { Search } = Input
 
-const columns: ColumnsType<ItemType> = [
-  {
-    title: 'Nome',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
-    sorter: (a, b) => a.name.localeCompare(b.name),
-  },
-  {
-    title: 'Preço',
-    dataIndex: 'price',
-    key: 'price',
-    render: (_, item) => <a>{convertNumberToMoney(parseFloat(`${item.price}`))}</a>,
-  },
-  {
-    title: 'Quant. de Pessoas',
-    dataIndex: 'quantityPeople',
-    key: 'quantityPeople',
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: 'Menu',
-    dataIndex: 'menuId',
-    key: 'menuId',
-    render: (text) => <a>{text}</a>,
-  },
-]
-
 const ItemsScreen = () => {
-  const { itemsFiltered, onSearch, handleOnClick } = useItem()
+  const { 
+    itemsFiltered, 
+    onSearch, 
+    handleOnClick,
+    handleEditItem,
+  } = useItem()
+
+  const columns: ColumnsType<ItemType> = useMemo(() => [
+    {
+      title: 'Nome',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <a>{text}</a>,
+      sorter: (a, b) => a.name.localeCompare(b.name),
+    },
+    {
+      title: 'Preço',
+      dataIndex: 'price',
+      key: 'price',
+      render: (_, item) => <a>{convertNumberToMoney(parseFloat(`${item.price}`))}</a>,
+    },
+    {
+      title: 'Quant. de Pessoas',
+      dataIndex: 'quantityPeople',
+      key: 'quantityPeople',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Menu',
+      dataIndex: 'menuId',
+      key: 'menuId',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Ações',
+      dataIndex: '',
+      width: 240,
+      key: 'x',
+      render: (_, menu) => 
+      <FlexJustifyCenter>
+        <Button margin="0px 16px 0px 0px" onClick={() => handleEditItem(menu.id)} icon={<EditOutlined />}>Editar</Button>
+        <Button danger icon={<DeleteOutlined />}>Deletar</Button>
+      </FlexJustifyCenter>
+    },
+  ], [])
 
   return (
     <Screen
