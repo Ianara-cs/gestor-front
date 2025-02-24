@@ -5,7 +5,7 @@ import { ItemType } from '../types/ItemType'
 import { FlexJustifyBetween, FlexJustifyCenter } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import Button from '../../../shared/components/buttons/button/button'
-import { Input } from 'antd'
+import { Input, Modal } from 'antd'
 import { useItem } from '../hooks/useItem'
 import { convertNumberToMoney } from '../../../shared/functions/money'
 import { useMemo } from 'react'
@@ -15,9 +15,13 @@ const { Search } = Input
 const ItemsScreen = () => {
   const { 
     itemsFiltered, 
+    openModalDelete,
     onSearch, 
     handleOnClick,
     handleEditItem,
+    handleDeleteItem,
+    handleCloseModalDelete,
+    handleOpenModalDelete,
   } = useItem()
 
   const columns: ColumnsType<ItemType> = useMemo(() => [
@@ -54,7 +58,7 @@ const ItemsScreen = () => {
       render: (_, menu) => 
       <FlexJustifyCenter>
         <Button margin="0px 16px 0px 0px" onClick={() => handleEditItem(menu.id)} icon={<EditOutlined />}>Editar</Button>
-        <Button danger icon={<DeleteOutlined />}>Deletar</Button>
+        <Button danger onClick={() => handleOpenModalDelete(menu.id)} icon={<DeleteOutlined />}>Deletar</Button>
       </FlexJustifyCenter>
     },
   ], [])
@@ -70,6 +74,16 @@ const ItemsScreen = () => {
         },
       ]}
     >
+      <Modal
+          title="Atenção!"
+          open={openModalDelete}
+          onOk={handleDeleteItem}
+          onCancel={handleCloseModalDelete}
+          okText="Sim"
+          cancelText="Cancelar"
+        >
+          <p>Tem certeza que deseja excluir o item?</p>
+        </Modal>
       <FlexJustifyBetween margin="16px 0px">
         <LimitedContainer width={240}>
           <Search placeholder="Nome do item" onSearch={onSearch} enterButton />
