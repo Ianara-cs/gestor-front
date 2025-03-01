@@ -1,5 +1,5 @@
 export const URL_AUTH = 'http://localhost:3000/auth'
-// export const URL_AUTH = 'http://localhost:8080/login'
+export const URL_USER = 'http://localhost:3000/users'
 
 export const URL_MENU = 'http://localhost:3000/menus'
 export const URL_MENU_ID = 'http://localhost:3000/menus/{menuId}'

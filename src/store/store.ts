@@ -4,6 +4,7 @@ import globalReducer from './reducers/globalReducer'
 import itemReducer from './reducers/itemReducer'
 import screenSizeReducer from './reducers/screenSizeReducer'
 import buttonMenuCollapsedReducer from './reducers/buttonMenuCollapsedReducer'
+import userReducer from './reducers/userReducer'
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     itemReducer,
     screenSizeReducer,
     buttonMenuCollapsedReducer,
+    userReducer,
   },
 })
 

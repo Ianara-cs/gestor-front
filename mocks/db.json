@@ -394,5 +394,39 @@
   },
   "profile": {
     "name": "typicode"
-  }
+  },
+  "users": [
+    {
+      "id": "1",
+      "username": "nara.com",
+      "password": "123",
+      "name": "Ianara",
+      "lastName": "Costa",
+      "groups": ["garçom", "gerente"]
+    },
+    {
+      "id": "2",
+      "username": "tainara",
+      "password": "123",
+      "name": "Tainara",
+      "lastName": "Costa",
+      "groups": ["garçom"]
+    },
+    {
+      "id": "3",
+      "username": "ivanara",
+      "password": "123",
+      "name": "Ivanara",
+      "lastName": "Costa da Silva",
+      "groups": ["garçom"]
+    },
+    {
+      "id": "4",
+      "username": "francys",
+      "password": "123",
+      "name": "Franciane",
+      "lastName": "de Oliveira Sousa",
+      "groups": ["garçom"]
+    }
+  ]
 }
