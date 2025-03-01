@@ -3,6 +3,8 @@ import {
   LaptopOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  ProductOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 import {
   ContainerLogoName,
@@ -17,12 +19,12 @@ import type { MenuProps } from 'antd'
 import { Menu as MenuAnt } from 'antd'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../../../modules/menus/routes'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ItemsRoutesEnum } from '../../../modules/items/routes'
 import Button from '../buttons/button/button'
 import { useButtonMenuCollapsedReducer } from '../../../store/reducers/buttonMenuCollapsedReducer/buttonMenuCollapsedReducer'
 import { useScreenSizeReducer } from '../../../store/reducers/screenSizeReducer/useScreenSizeReducer'
-import { FlexJustifyCenter } from '../styles/display.styled'
+import { UsersRoutesEnum } from '../../../modules/users/router'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -62,7 +64,7 @@ const Menu = () => {
     {
       key: 'items',
       label: 'Itens',
-      icon: <LaptopOutlined />,
+      icon: <ProductOutlined />,
       children: [
         {
           key: '4',
@@ -73,6 +75,18 @@ const Menu = () => {
           key: '5',
           label: 'Inserir',
           onClick: () => navigate(ItemsRoutesEnum.ITEM_INSERT),
+        },
+      ],
+    },
+    {
+      key: 'users',
+      label: 'Usuários',
+      icon: <UserOutlined />,
+      children: [
+        {
+          key: '6',
+          label: 'Visualizar',
+          onClick: () => navigate(UsersRoutesEnum.USERS),
         },
       ],
     },
