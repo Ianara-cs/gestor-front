@@ -1,16 +1,27 @@
 import Search from 'antd/es/input/Search'
 import Button from '../../../shared/components/buttons/button/button'
 import Screen from '../../../shared/components/screen/Screen'
-import { FlexJustifyBetween } from '../../../shared/components/styles/display.styled'
+import {
+  FlexJustifyBetween,
+  FlexJustifyCenter,
+} from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import Table from '../../../shared/components/table/Table'
 import { ColumnsType } from 'antd/es/table'
 import { UserType } from '../types/UserType'
 import { useMemo } from 'react'
 import { useUser } from '../hooks/useUser'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { Modal } from 'antd'
 
 const UsersScreen = () => {
-  const { usersFiltered } = useUser()
+  const {
+    usersFiltered,
+    openModalDelete,
+    handleDeleteUser,
+    handleOpenModalDelete,
+    handleCloseModalDelete,
+  } = useUser()
 
   const columns: ColumnsType<UserType> = useMemo(
     () => [
@@ -33,17 +44,26 @@ const UsersScreen = () => {
         sorter: (a, b) => a.name.localeCompare(b.name),
       },
       {
-        title: 'Senha',
-        dataIndex: 'password',
-        key: 'password',
-        render: (text) => <p>{text}</p>,
-      },
-      {
         title: 'Funções',
         dataIndex: 'groups',
         key: 'groups',
         render: (_, user) => user.groups.map((group) => <p>{group}</p>),
-        sorter: (a, b) => a.name.localeCompare(b.name),
+      },
+      {
+        title: 'Ações',
+        dataIndex: '',
+        width: 240,
+        key: 'x',
+        render: (_, menu) => (
+          <FlexJustifyCenter>
+            <Button margin="0px 16px 0px 0px" icon={<EditOutlined />}>
+              Editar
+            </Button>
+            <Button danger onClick={() => handleOpenModalDelete(menu.id)} icon={<DeleteOutlined />}>
+              Deletar
+            </Button>
+          </FlexJustifyCenter>
+        ),
       },
     ],
     [],
@@ -60,7 +80,17 @@ const UsersScreen = () => {
         },
       ]}
     >
-      <FlexJustifyBetween>
+      <Modal
+        title="Atenção!"
+        open={openModalDelete}
+        onOk={handleDeleteUser}
+        onCancel={handleCloseModalDelete}
+        okText="Sim"
+        cancelText="Cancelar"
+      >
+        <p>Tem certeza que deseja excluir o usuário?</p>
+      </Modal>
+      <FlexJustifyBetween margin="16px 0px">
         <LimitedContainer width={240}>
           <Search placeholder="Nome do item" enterButton />
         </LimitedContainer>
