@@ -8,7 +8,7 @@ export interface ItemState {
 
 const initialState: ItemState = {
   items: [],
-  item: undefined
+  item: undefined,
 }
 
 export const itemSlice = createSlice({

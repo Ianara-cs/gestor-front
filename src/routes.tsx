@@ -8,15 +8,13 @@ import { usersScreensRoutes } from './modules/users/router'
 
 const routes: RouteObject[] = [...loginRoutes]
 const routesLoggedIn: RouteObject[] = [
-  ...menuScreens, 
-  ...itemsScreens, 
+  ...menuScreens,
+  ...itemsScreens,
   ...firstScreenRoutes,
   ...usersScreensRoutes,
-].map(
-  (route) => ({
-    ...route,
-    loader: verifyLoggedIn,
-  }),
-)
+].map((route) => ({
+  ...route,
+  loader: verifyLoggedIn,
+}))
 
 export const router = createBrowserRouter([...routes, ...routesLoggedIn])

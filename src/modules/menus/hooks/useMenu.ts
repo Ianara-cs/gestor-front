@@ -40,10 +40,11 @@ export const useMenu = () => {
 
   const handleDeleteMenu = async () => {
     await request(
-      URL_MENU_ID.replace('{menuId}', `${menuIdDelete}`), 
+      URL_MENU_ID.replace('{menuId}', `${menuIdDelete}`),
       MethodsEnum.DELETE,
-      undefined, undefined,
-      'Cardápio deletado!'
+      undefined,
+      undefined,
+      'Cardápio deletado!',
     )
     await request(URL_MENU, MethodsEnum.GET, setMenus)
     setMenuIdDelete(undefined)
@@ -56,7 +57,6 @@ export const useMenu = () => {
   const handleOpenModalDelete = (menuId: string) => {
     setMenuIdDelete(menuId)
   }
-
 
   return {
     menusFiltered,

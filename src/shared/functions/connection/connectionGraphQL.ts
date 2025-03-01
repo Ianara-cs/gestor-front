@@ -4,7 +4,6 @@ import { URL_GRAPHQL } from '../../constants/urls'
 import { AUTHORIZATION_KEY } from '../../constants/authorizationConstants'
 import { getItemStorage } from './storageProxy'
 
-
 const httpLink = createHttpLink({
   uri: URL_GRAPHQL,
 })

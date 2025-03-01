@@ -284,7 +284,6 @@
       ]
     }
   ],
-
   "items": [
     {
       "id": "dd8206e7-ecef-4cf6-9e86-12b14d7807df",
@@ -387,7 +386,7 @@
     "email": "nara.com",
     "password": "123"
   },
-  "user": {
+  "auth": {
     "id": 1,
     "email": "nara.com",
     "password": "123",

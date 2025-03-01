@@ -38,66 +38,70 @@ const ItemInsert = () => {
           href: ItemsRoutesEnum.ITEM,
         },
         {
-          title: isEdit ? 'EDITAR ITEM':'INSERIR ITEM',
+          title: isEdit ? 'EDITAR ITEM' : 'INSERIR ITEM',
         },
       ]}
     >
-      {loadingItem ? <Loading/> : <FlexJustifyCenter>
-        <LimitedContainer width={400}>
-          <Input
-            onChange={(event) => onChangeInput(event, 'name')}
-            margin={'0px 0px 16px 0px'}
-            title="Nome"
-            placeholder="Nome"
-            value={item.name}
-          />
-          <InputMoney
-            onChange={(event) => onChangeInput(event, 'price', true)}
-            margin={'0px 0px 16px 0px'}
-            title="Preço"
-            placeholder="Preço"
-            value={item.price}
-          />
-          <Input
-            type="number"
-            min={1}
-            onChange={(event) => onChangeInput(event, 'quantityPeople', true)}
-            margin={'0px 0px 16px 0px'}
-            title="Quantidade de Pessoas"
-            placeholder="Digite a quantidade de pessoas"
-            value={item.quantityPeople}
-          />
-          <Select
-            title="Menu"
-            defaultValue={item.menuId}
-            margin={'0px 0px 32px 0px'}
-            placeholder="Escolha uma categoria"
-            style={{ width: '100%' }}
-            onChange={handleChangeSelect}
-            options={menusFiltered.map((menu) => ({
-              value: `${menu.id}`,
-              label: `${menu.name}`,
-            }))}
-          />
-          <DisplayFlexJustifyRight>
-            <LimitedContainer margin="0px 8px" width={120}>
-              <Button danger onClick={handleClickCancel}>
-                Cancelar
-              </Button>
-            </LimitedContainer>
-            <LimitedContainer width={120}>
-              <Button
-                loading={loading}
-                disabled={disabledButton}
-                onClick={handleInsertItem}
-                type="primary"
-              >
-                {isEdit ? 'Salvar' : 'Inserir Menu'}
-              </Button>
-            </LimitedContainer>
-          </DisplayFlexJustifyRight>
-        </LimitedContainer>
-      </FlexJustifyCenter>}
+      {loadingItem ? (
+        <Loading />
+      ) : (
+        <FlexJustifyCenter>
+          <LimitedContainer width={400}>
+            <Input
+              onChange={(event) => onChangeInput(event, 'name')}
+              margin={'0px 0px 16px 0px'}
+              title="Nome"
+              placeholder="Nome"
+              value={item.name}
+            />
+            <InputMoney
+              onChange={(event) => onChangeInput(event, 'price', true)}
+              margin={'0px 0px 16px 0px'}
+              title="Preço"
+              placeholder="Preço"
+              value={item.price}
+            />
+            <Input
+              type="number"
+              min={1}
+              onChange={(event) => onChangeInput(event, 'quantityPeople', true)}
+              margin={'0px 0px 16px 0px'}
+              title="Quantidade de Pessoas"
+              placeholder="Digite a quantidade de pessoas"
+              value={item.quantityPeople}
+            />
+            <Select
+              title="Menu"
+              defaultValue={item.menuId}
+              margin={'0px 0px 32px 0px'}
+              placeholder="Escolha uma categoria"
+              style={{ width: '100%' }}
+              onChange={handleChangeSelect}
+              options={menusFiltered.map((menu) => ({
+                value: `${menu.id}`,
+                label: `${menu.name}`,
+              }))}
+            />
+            <DisplayFlexJustifyRight>
+              <LimitedContainer margin="0px 8px" width={120}>
+                <Button danger onClick={handleClickCancel}>
+                  Cancelar
+                </Button>
+              </LimitedContainer>
+              <LimitedContainer width={120}>
+                <Button
+                  loading={loading}
+                  disabled={disabledButton}
+                  onClick={handleInsertItem}
+                  type="primary"
+                >
+                  {isEdit ? 'Salvar' : 'Inserir Menu'}
+                </Button>
+              </LimitedContainer>
+            </DisplayFlexJustifyRight>
+          </LimitedContainer>
+        </FlexJustifyCenter>
+      )}
     </Screen>
   )
 }

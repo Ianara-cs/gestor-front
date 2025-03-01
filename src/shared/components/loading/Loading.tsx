@@ -1,6 +1,6 @@
-import { Spin, SpinProps } from "antd"
+import { Spin, SpinProps } from 'antd'
 
-const Loading = ({...props}: SpinProps) => {
+const Loading = ({ ...props }: SpinProps) => {
   return <Spin {...props} />
 }
 

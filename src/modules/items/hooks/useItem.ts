@@ -42,12 +42,13 @@ export const useItem = () => {
     setItemIdDelete(itemId)
   }
 
-  const handleDeleteItem = async() => {
+  const handleDeleteItem = async () => {
     await request(
-      URL_ITEM_ID.replace('{itemId}', `${itemIdDelete}`), 
-      MethodsEnum.DELETE, 
-      undefined, undefined, 
-      'Item deletado!'
+      URL_ITEM_ID.replace('{itemId}', `${itemIdDelete}`),
+      MethodsEnum.DELETE,
+      undefined,
+      undefined,
+      'Item deletado!',
     )
     await request(URL_ITEM, MethodsEnum.GET, setItems)
     setItemIdDelete(undefined)

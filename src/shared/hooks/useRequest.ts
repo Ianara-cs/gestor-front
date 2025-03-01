@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ConnectionAPI, { connectionAPIGet, MethodType } from '../functions/connection/connectionAPI'
 import { NavigateFunction } from 'react-router'
-import { URL_USER } from '../constants/urls'
+import { URL_AUTH } from '../constants/urls'
 import { ERROR_INVALID_PASSWORD } from '../constants/errosStatus'
 import { UserType } from '../../modules/login/types/UserType'
 import { FirstScreenRoutesEnum } from '../../modules/firstScreen/routes'
@@ -25,7 +25,7 @@ export const useRequests = () => {
           saveGlobal(result)
         }
         if (message) {
-          setNotification('Sucesso!', 'success', message);
+          setNotification('Sucesso!', 'success', message)
         }
         return result
       })
@@ -42,7 +42,7 @@ export const useRequests = () => {
     setLoading(true)
     // Simulando um login
     // await connectionAPIPost<AuthType>(URL_AUTH, body).then((result) => {
-    await connectionAPIGet<UserType>(URL_USER)
+    await connectionAPIGet<UserType>(URL_AUTH)
       .then((result) => {
         setUser(result)
         setNotification('Entrando', 'success')

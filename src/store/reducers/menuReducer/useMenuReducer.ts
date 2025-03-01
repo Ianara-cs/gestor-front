@@ -19,6 +19,6 @@ export const useMenuReducer = () => {
     menus,
     menu,
     setMenus,
-    setMenu
+    setMenu,
   }
 }

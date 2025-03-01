@@ -15,12 +15,12 @@ const DEFAULT_ITEM = {
 }
 
 export const useInsertItem = () => {
-  const { itemId } = useParams<{ itemId: string }>();
+  const { itemId } = useParams<{ itemId: string }>()
   const navigate = useNavigate()
-  const {request, loading} = useRequests()
+  const { request, loading } = useRequests()
   const [loadingItem, setLoadingItem] = useState<boolean>(false)
   const [disabledButton, setDisabledButton] = useState<boolean>(true)
-  const {item : itemReducer, setItem: setItemReducer} = useItemReducer()
+  const { item: itemReducer, setItem: setItemReducer } = useItemReducer()
   const [isEdit, setIsEdit] = useState(false)
   const [item, setItem] = useState<InsertItem>({
     name: '',
@@ -30,28 +30,24 @@ export const useInsertItem = () => {
   })
 
   useEffect(() => {
-    if(itemReducer) {
+    if (itemReducer) {
       setItem({
         name: itemReducer.name,
         price: itemReducer.price,
         quantityPeople: itemReducer.quantityPeople,
-        menuId: itemReducer.menuId
+        menuId: itemReducer.menuId,
       })
     }
   }, [itemReducer])
 
   useEffect(() => {
-    const findItem = async() => {
+    const findItem = async () => {
       setLoadingItem(true)
-      await request(
-        URL_ITEM_ID.replace('{itemId}', `${itemId}`), 
-        MethodsEnum.GET, 
-        setItemReducer
-      )
+      await request(URL_ITEM_ID.replace('{itemId}', `${itemId}`), MethodsEnum.GET, setItemReducer)
       setLoadingItem(false)
     }
 
-    if(itemId) {
+    if (itemId) {
       setIsEdit(true)
       findItem()
     } else {
@@ -91,21 +87,16 @@ export const useInsertItem = () => {
   }
 
   const handleInsertItem = async () => {
-    if(itemId) {
+    if (itemId) {
       await request(
-        URL_ITEM_ID.replace('{itemId}', itemId), 
+        URL_ITEM_ID.replace('{itemId}', itemId),
         MethodsEnum.PUT,
         undefined,
         item,
-        'Item Modificado!'
+        'Item Modificado!',
       )
     } else {
-      await request(
-        URL_ITEM, MethodsEnum.POST, 
-        undefined, 
-        item, 
-        'Item Adicionado!'
-      )
+      await request(URL_ITEM, MethodsEnum.POST, undefined, item, 'Item Adicionado!')
     }
     navigate(ItemsRoutesEnum.ITEM)
   }

@@ -5,13 +5,16 @@ import Button from '../../../shared/components/buttons/button/button'
 import Select from '../../../shared/components/inputs/select/select'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { MenuInsertContainer } from '../styles/menuInsert'
-import { DisplayFlexJustifyRight, FlexJustifyCenter } from '../../../shared/components/styles/display.styled'
+import {
+  DisplayFlexJustifyRight,
+  FlexJustifyCenter,
+} from '../../../shared/components/styles/display.styled'
 import { useInsertMenu } from '../hooks/useInsertMenu'
 import { useParams } from 'react-router'
 import Loading from '../../../shared/components/loading/Loading'
 
 const MenuInsert = () => {
-  const { menuId } = useParams<{ menuId: string }>();
+  const { menuId } = useParams<{ menuId: string }>()
   const {
     loading,
     loadingMenu,
@@ -39,49 +42,53 @@ const MenuInsert = () => {
         },
       ]}
     >
-      {
-      loadingMenu ? <FlexJustifyCenter>  <Loading size='large'/> </FlexJustifyCenter> :
-      <MenuInsertContainer>
-        <LimitedContainer width={400}>
-          <Input
-            onChange={(event) => onChange(event, 'name')}
-            margin={'0px 0px 16px 0px'}
-            title="Nome"
-            placeholder="Nome"
-            value={menu.name}
-          />
-          <Select
-            defaultValue={menu.category}
-            title="Categoria"
-            margin={'0px 0px 32px 0px'}
-            placeholder="Escolha uma categoria"
-            style={{ width: '100%' }}
-            onChange={handleChange}
-            options={[
-              { value: 'BAR', label: 'Bar' },
-              { value: 'KITCHEN', label: 'Cozinha' },
-            ]}
-          />
-          <DisplayFlexJustifyRight>
-            <LimitedContainer margin="0px 8px" width={120}>
-              <Button danger onClick={handleClickCancel}>
-                Cancelar
-              </Button>
-            </LimitedContainer>
-            <LimitedContainer width={120}>
-              <Button
-                loading={loading}
-                disabled={disabledButton}
-                onClick={handleInsertMenu}
-                type="primary"
-              >
-                {isEdit ? 'Salvar' : 'Inserir menu'}
-              </Button>
-            </LimitedContainer>
-          </DisplayFlexJustifyRight>
-        </LimitedContainer>
-      </MenuInsertContainer>
-    }
+      {loadingMenu ? (
+        <FlexJustifyCenter>
+          {' '}
+          <Loading size="large" />{' '}
+        </FlexJustifyCenter>
+      ) : (
+        <MenuInsertContainer>
+          <LimitedContainer width={400}>
+            <Input
+              onChange={(event) => onChange(event, 'name')}
+              margin={'0px 0px 16px 0px'}
+              title="Nome"
+              placeholder="Nome"
+              value={menu.name}
+            />
+            <Select
+              defaultValue={menu.category}
+              title="Categoria"
+              margin={'0px 0px 32px 0px'}
+              placeholder="Escolha uma categoria"
+              style={{ width: '100%' }}
+              onChange={handleChange}
+              options={[
+                { value: 'BAR', label: 'Bar' },
+                { value: 'KITCHEN', label: 'Cozinha' },
+              ]}
+            />
+            <DisplayFlexJustifyRight>
+              <LimitedContainer margin="0px 8px" width={120}>
+                <Button danger onClick={handleClickCancel}>
+                  Cancelar
+                </Button>
+              </LimitedContainer>
+              <LimitedContainer width={120}>
+                <Button
+                  loading={loading}
+                  disabled={disabledButton}
+                  onClick={handleInsertMenu}
+                  type="primary"
+                >
+                  {isEdit ? 'Salvar' : 'Inserir menu'}
+                </Button>
+              </LimitedContainer>
+            </DisplayFlexJustifyRight>
+          </LimitedContainer>
+        </MenuInsertContainer>
+      )}
     </Screen>
   )
 }

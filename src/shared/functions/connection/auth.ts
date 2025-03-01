@@ -1,7 +1,7 @@
 import { NavigateFunction, redirect } from 'react-router'
 import { UserType } from '../../../modules/login/types/UserType'
 import { AUTHORIZATION_KEY } from '../../constants/authorizationConstants'
-import { URL_USER } from '../../constants/urls'
+import { URL_AUTH } from '../../constants/urls'
 import { connectionAPIGet } from './connectionAPI'
 import { getItemStorage, removeItemStorage, setItemStorage } from './storageProxy'
 import { LoginRoutesEnum } from '../../../modules/login/routes'
@@ -22,7 +22,7 @@ export const verifyLoggedIn = async () => {
     return redirect(LoginRoutesEnum.LOGIN)
   }
 
-  const user = await connectionAPIGet<UserType>(URL_USER).catch(() => {
+  const user = await connectionAPIGet<UserType>(URL_AUTH).catch(() => {
     unsetAuthorizationToken()
   })
 

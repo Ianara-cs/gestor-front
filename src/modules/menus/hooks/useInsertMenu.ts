@@ -14,8 +14,8 @@ const DEFAULT_MENU = {
 
 export const useInsertMenu = (menuId?: string) => {
   const navigate = useNavigate()
-  const {request, loading} = useRequests()
-  const { menu: menuReducer, setMenu: setMenuReducer} = useMenuReducer()
+  const { request, loading } = useRequests()
+  const { menu: menuReducer, setMenu: setMenuReducer } = useMenuReducer()
   const [menu, setMenu] = useState<InsertMenu>({
     name: '',
     category: '',
@@ -25,32 +25,27 @@ export const useInsertMenu = (menuId?: string) => {
   const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
-    if(menuReducer) {
+    if (menuReducer) {
       setMenu({
         name: menuReducer.name,
-        category: menuReducer.category
+        category: menuReducer.category,
       })
     }
-  }, [menuReducer]) 
+  }, [menuReducer])
 
   useEffect(() => {
-    const findMenu = async() => {
+    const findMenu = async () => {
       setLoadingMenu(true)
-      await request(
-        URL_MENU_ID.replace('{menuId}', 
-        `${menuId}`),
-        MethodsEnum.GET, 
-        setMenuReducer
-      )
+      await request(URL_MENU_ID.replace('{menuId}', `${menuId}`), MethodsEnum.GET, setMenuReducer)
       setLoadingMenu(false)
     }
 
-    if(menuId) {
+    if (menuId) {
       setIsEdit(true)
       findMenu()
     } else {
-      setMenuReducer(undefined);
-      setMenu(DEFAULT_MENU);
+      setMenuReducer(undefined)
+      setMenu(DEFAULT_MENU)
     }
   }, [menuId])
 
@@ -81,13 +76,13 @@ export const useInsertMenu = (menuId?: string) => {
   }
 
   const handleInsertMenu = async () => {
-    if(menuId) {
+    if (menuId) {
       await request(
         URL_MENU_ID.replace('{menuId}', menuId),
         MethodsEnum.PUT,
         undefined,
         menu,
-        'Cardápio modificado!'
+        'Cardápio modificado!',
       )
     } else {
       await request(URL_MENU, MethodsEnum.POST, undefined, menu, 'Cardápio criado!')

@@ -1,5 +1,5 @@
-import { RouteObject } from "react-router";
-import UsersScreen from "./screens/UsersScreen";
+import { RouteObject } from 'react-router'
+import UsersScreen from './screens/UsersScreen'
 
 export enum UsersRoutesEnum {
   USERS = '/users',
@@ -8,6 +8,6 @@ export enum UsersRoutesEnum {
 export const usersScreensRoutes: RouteObject[] = [
   {
     path: UsersRoutesEnum.USERS,
-    element: <UsersScreen />
-  }
+    element: <UsersScreen />,
+  },
 ]
