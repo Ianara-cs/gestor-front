@@ -1,4 +1,4 @@
-import { DocumentNode, OperationVariables, useLazyQuery, useQuery } from '@apollo/client'
+import { DocumentNode, OperationVariables, useLazyQuery } from '@apollo/client'
 import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer'
 import { formatErrorMessage } from '../functions/errorHandler'
 import { useEffect } from 'react'

@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react'
 import { InsertMenu } from '../../../shared/dtos/insertMenu.dto'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../routes'
-import { URL_MENU_ID } from '../../../shared/constants/urls'
-import { useRequests } from '../../../shared/hooks/useRequest'
 import { useMenuReducer } from '../../../store/reducers/menuReducer/useMenuReducer'
-import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
 import { CREATE_MENU, UPDATE_MENU } from '../../../shared/graphql/mutations/menuMutations'
 import { useGraphQLQuery } from '../../../shared/hooks/useGraphQLQuery'
@@ -18,7 +15,6 @@ const DEFAULT_MENU = {
 
 export const useInsertMenu = (menuId?: string) => {
   const navigate = useNavigate()
-  //const { request, loading } = useRequests()
   const { menu: menuReducer, setMenu: setMenuReducer } = useMenuReducer()
   const [menu, setMenu] = useState<InsertMenu>({
     name: '',
@@ -34,9 +30,9 @@ export const useInsertMenu = (menuId?: string) => {
     navigateTo: MenuRoutesEnum.MENUS,
   })
 
-  const {executeQuery: getMenu} = useGraphQLQuery({
-    query: GET_MENU, 
-    saveGlobal: setMenuReducer
+  const { executeQuery: getMenu } = useGraphQLQuery({
+    query: GET_MENU,
+    saveGlobal: setMenuReducer,
   })
 
   const { mutate: updateMenu, loading } = useGraphQLMutation({
@@ -58,7 +54,7 @@ export const useInsertMenu = (menuId?: string) => {
     const findMenu = async () => {
       setLoadingMenu(true)
       await getMenu({
-        variables: {data: menuId}
+        variables: { data: menuId },
       })
       setLoadingMenu(false)
     }
@@ -100,17 +96,10 @@ export const useInsertMenu = (menuId?: string) => {
 
   const handleInsertMenu = async () => {
     if (menuId) {
-      /*await request(
-        URL_MENU_ID.replace('{menuId}', menuId),
-        MethodsEnum.PUT,
-        undefined,
-        menu,
-        'Cardápio modificado!',
-      )*/
       await updateMenu({
         variables: {
-          data: {...menu, id: menuId}
-        }
+          data: { ...menu, id: menuId },
+        },
       })
     } else {
       await createMenu({

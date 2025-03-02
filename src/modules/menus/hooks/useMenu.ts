@@ -13,10 +13,13 @@ export const useMenu = () => {
   const { menus, setMenus } = useMenuReducer()
   const [menusFiltered, setMenusFiltered] = useState<MenuType[]>([])
   const navigate = useNavigate()
-  const {executeQuery, loading, refetch } = useGraphQLQuery({ query: GET_MENUS, saveGlobal: setMenus })
-  const { mutate: deleteMenu} = useGraphQLMutation({ 
-    mutation: DELETE_MENU, 
-    successMessage:'Cardápio deletado!' 
+  const { executeQuery, loading, refetch } = useGraphQLQuery({
+    query: GET_MENUS,
+    saveGlobal: setMenus,
+  })
+  const { mutate: deleteMenu } = useGraphQLMutation({
+    mutation: DELETE_MENU,
+    successMessage: 'Cardápio deletado!',
   })
 
   useEffect(() => {
@@ -46,8 +49,8 @@ export const useMenu = () => {
   const handleDeleteMenu = async () => {
     await deleteMenu({
       variables: {
-        data: menuIdDelete
-      }
+        data: menuIdDelete,
+      },
     })
     setMenuIdDelete(undefined)
     await refetch()

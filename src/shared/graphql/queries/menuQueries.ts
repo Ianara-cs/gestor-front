@@ -14,11 +14,11 @@ export const GET_MENUS = gql`
 `
 
 export const GET_MENU = gql`
-  query Menu($data: String!){
+  query Menu($data: String!) {
     menu(id: $data) {
-      id,
-      name,
-      category,
+      id
+      name
+      category
     }
   }
 `
