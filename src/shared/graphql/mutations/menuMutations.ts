@@ -17,3 +17,11 @@ export const DELETE_MENU = gql`
     }
   }
 `
+
+export const UPDATE_MENU = gql`
+  mutation UpdateMenu($data: UpdateMenuInput!) {
+    updateMenu(updateMenuData: $data) {
+      id
+    }
+  }
+`
