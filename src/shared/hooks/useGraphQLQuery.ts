@@ -1,17 +1,19 @@
-import { DocumentNode, OperationVariables, useQuery } from "@apollo/client"
-import { useGlobalReducer } from "../../store/reducers/globalReducer/useGlobalReducer"
-import { formatErrorMessage } from "../functions/errorHandler"
-import { useEffect } from "react"
+import { DocumentNode, OperationVariables, useQuery } from '@apollo/client'
+import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer'
+import { formatErrorMessage } from '../functions/errorHandler'
+import { useEffect } from 'react'
 
 interface useGraphQLQueryProps<TData, TVariables> {
-  query: DocumentNode, 
-  variables?: TVariables,
-  saveGlobal?: (object: TData) => void,
+  query: DocumentNode
+  variables?: TVariables
+  saveGlobal?: (object: TData) => void
 }
 
-export const useGraphQLQuery = <TData, TVariables extends OperationVariables>(
-  {query, variables, saveGlobal} : useGraphQLQueryProps< TData, TVariables>
-) => {
+export const useGraphQLQuery = <TData, TVariables extends OperationVariables>({
+  query,
+  variables,
+  saveGlobal,
+}: useGraphQLQueryProps<TData, TVariables>) => {
   const { setNotification } = useGlobalReducer()
 
   const { data, loading, error, refetch } = useQuery<TData, TVariables>(query, {
@@ -29,7 +31,7 @@ export const useGraphQLQuery = <TData, TVariables extends OperationVariables>(
 
   useEffect(() => {
     if (error) {
-      setNotification(formatErrorMessage(error), "error")
+      setNotification(formatErrorMessage(error), 'error')
     }
   }, [error, setNotification])
 

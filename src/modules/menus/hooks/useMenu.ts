@@ -15,7 +15,7 @@ export const useMenu = () => {
   const { request } = useRequests()
   const [menusFiltered, setMenusFiltered] = useState<MenuType[]>([])
   const navigate = useNavigate()
-  const {loading} = useGraphQLQuery({query: GET_MENU, saveGlobal: setMenus})
+  const { loading } = useGraphQLQuery({ query: GET_MENU, saveGlobal: setMenus })
 
   useEffect(() => {
     setMenusFiltered([...menus])

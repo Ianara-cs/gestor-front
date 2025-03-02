@@ -25,10 +25,10 @@ export const useInsertMenu = (menuId?: string) => {
   const [loadingMenu, setLoadingMenu] = useState(false)
   const [disabledButton, setDisabledButton] = useState(true)
   const [isEdit, setIsEdit] = useState(false)
-  const {mutate: createMenu} = useGraphQLMutation({
-    mutation: CREATE_MENU, 
+  const { mutate: createMenu } = useGraphQLMutation({
+    mutation: CREATE_MENU,
     successMessage: 'Cardápio criado!',
-    navigateTo: MenuRoutesEnum.MENUS
+    navigateTo: MenuRoutesEnum.MENUS,
   })
 
   useEffect(() => {
@@ -93,9 +93,9 @@ export const useInsertMenu = (menuId?: string) => {
       )
     } else {
       await createMenu({
-        variables: { 
-          data: menu
-        }
+        variables: {
+          data: menu,
+        },
       })
     }
   }

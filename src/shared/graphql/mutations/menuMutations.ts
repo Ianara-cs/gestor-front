@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const CREATE_MENU = gql`
   mutation CreateMenu($data: CreateMenuInput!) {
@@ -8,4 +8,4 @@ export const CREATE_MENU = gql`
       category
     }
   }
-`;
+`
