@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { InsertMenu } from '../../../shared/dtos/insertMenu.dto'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../routes'
-import { URL_MENU, URL_MENU_ID } from '../../../shared/constants/urls'
+import { URL_MENU_ID } from '../../../shared/constants/urls'
 import { useRequests } from '../../../shared/hooks/useRequest'
 import { useMenuReducer } from '../../../store/reducers/menuReducer/useMenuReducer'
 import { MethodsEnum } from '../../../shared/enums/methods.enum'
+import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
+import { CREATE_MENU } from '../../../shared/graphql/mutations/menuMutations'
 
 const DEFAULT_MENU = {
   name: '',
@@ -23,6 +25,11 @@ export const useInsertMenu = (menuId?: string) => {
   const [loadingMenu, setLoadingMenu] = useState(false)
   const [disabledButton, setDisabledButton] = useState(true)
   const [isEdit, setIsEdit] = useState(false)
+  const {mutate: createMenu} = useGraphQLMutation({
+    mutation: CREATE_MENU, 
+    successMessage: 'Cardápio criado!',
+    navigateTo: MenuRoutesEnum.MENUS
+  })
 
   useEffect(() => {
     if (menuReducer) {
@@ -85,9 +92,12 @@ export const useInsertMenu = (menuId?: string) => {
         'Cardápio modificado!',
       )
     } else {
-      await request(URL_MENU, MethodsEnum.POST, undefined, menu, 'Cardápio criado!')
+      await createMenu({
+        variables: { 
+          data: menu
+        }
+      })
     }
-    navigate(MenuRoutesEnum.MENUS)
   }
 
   return {
