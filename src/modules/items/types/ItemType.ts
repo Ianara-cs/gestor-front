@@ -1,5 +1,4 @@
-import { MenuType } from "../../menus/types/MenuType"
-
+import { MenuType } from '../../menus/types/MenuType'
 
 export interface ItemType {
   id: string
