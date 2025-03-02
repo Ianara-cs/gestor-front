@@ -6,6 +6,9 @@ export const GET_MENU = gql`
       id
       name
       category
+      items {
+        id
+      }
     }
   }
 `

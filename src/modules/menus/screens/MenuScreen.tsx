@@ -33,14 +33,21 @@ const MenuScreen = () => {
         title: 'Nome',
         dataIndex: 'name',
         key: 'name',
-        render: (text) => <a>{text}</a>,
+        render: (text) => <p>{text}</p>,
         sorter: (a, b) => a.name.localeCompare(b.name),
       },
       {
         title: 'Categoria',
         dataIndex: 'category',
         key: 'category',
-        render: (text) => <a>{text}</a>,
+        render: (text) => <p>{text}</p>,
+      },
+      {
+        title: 'Quant. de itens',
+        dataIndex: 'items',
+        key: 'items',
+        width: 135,
+        render: (_, menu) => <p>{menu.items ? menu.items.length : 0}</p>,
       },
       {
         title: 'Ações',
