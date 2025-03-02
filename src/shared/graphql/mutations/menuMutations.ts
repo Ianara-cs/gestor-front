@@ -9,3 +9,11 @@ export const CREATE_MENU = gql`
     }
   }
 `
+
+export const DELETE_MENU = gql`
+  mutation DeleteMenu ($data: String!){
+    deleteMenu(id: $data) {
+      id
+    }
+  }
+`
