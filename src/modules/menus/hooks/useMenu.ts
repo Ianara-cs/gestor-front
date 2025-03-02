@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { MenuType } from '../types/MenuType'
-import { URL_MENU, URL_MENU_ID } from '../../../shared/constants/urls'
+import { URL_MENU_ID } from '../../../shared/constants/urls'
 import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { MenuRoutesEnum } from '../routes'
 import { useRequests } from '../../../shared/hooks/useRequest'
 import { useNavigate } from 'react-router'
 import { useMenuReducer } from '../../../store/reducers/menuReducer/useMenuReducer'
+import { useGraphQLQuery } from '../../../shared/hooks/useGraphQLQuery'
+import { GET_MENU } from '../../../shared/graphql/queries/menuQueries'
 
 export const useMenu = () => {
   const [menuIdDelete, setMenuIdDelete] = useState<string | undefined>()
@@ -13,14 +15,11 @@ export const useMenu = () => {
   const { request } = useRequests()
   const [menusFiltered, setMenusFiltered] = useState<MenuType[]>([])
   const navigate = useNavigate()
+  const {loading} = useGraphQLQuery({query: GET_MENU, saveGlobal: setMenus})
 
   useEffect(() => {
     setMenusFiltered([...menus])
   }, [menus])
-
-  useEffect(() => {
-    request<MenuType[]>(URL_MENU, MethodsEnum.GET, setMenus)
-  }, [])
 
   const handleOnClick = () => {
     navigate(MenuRoutesEnum.MENU_INSERT)
@@ -46,7 +45,6 @@ export const useMenu = () => {
       undefined,
       'Cardápio deletado!',
     )
-    await request(URL_MENU, MethodsEnum.GET, setMenus)
     setMenuIdDelete(undefined)
   }
 
@@ -61,6 +59,7 @@ export const useMenu = () => {
   return {
     menusFiltered,
     openModalDelete: !!menuIdDelete,
+    loading,
     handleOnClick,
     onSearch,
     handleDeleteMenu,

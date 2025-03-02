@@ -10,7 +10,7 @@ import {
 } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { useMenu } from '../hooks/useMenu'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 const { Search } = Input
 
@@ -18,6 +18,7 @@ const MenuScreen = () => {
   const {
     menusFiltered,
     openModalDelete,
+    loading,
     handleOnClick,
     onSearch,
     handleDeleteMenu,
@@ -96,7 +97,7 @@ const MenuScreen = () => {
           </Button>
         </LimitedContainer>
       </FlexJustifyBetween>
-      <Table columns={columns} dataSource={menusFiltered} />
+      <Table columns={columns} dataSource={menusFiltered} loading={loading} />
     </Screen>
   )
 }
