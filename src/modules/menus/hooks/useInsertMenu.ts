@@ -8,6 +8,8 @@ import { useMenuReducer } from '../../../store/reducers/menuReducer/useMenuReduc
 import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
 import { CREATE_MENU } from '../../../shared/graphql/mutations/menuMutations'
+import { useGraphQLQuery } from '../../../shared/hooks/useGraphQLQuery'
+import { GET_MENU } from '../../../shared/graphql/queries/menuQueries'
 
 const DEFAULT_MENU = {
   name: '',
@@ -25,10 +27,16 @@ export const useInsertMenu = (menuId?: string) => {
   const [loadingMenu, setLoadingMenu] = useState(false)
   const [disabledButton, setDisabledButton] = useState(true)
   const [isEdit, setIsEdit] = useState(false)
+
   const { mutate: createMenu } = useGraphQLMutation({
     mutation: CREATE_MENU,
     successMessage: 'Cardápio criado!',
     navigateTo: MenuRoutesEnum.MENUS,
+  })
+
+  const {executeQuery: getMenu} = useGraphQLQuery({
+    query: GET_MENU, 
+    saveGlobal: setMenuReducer
   })
 
   useEffect(() => {
@@ -43,7 +51,9 @@ export const useInsertMenu = (menuId?: string) => {
   useEffect(() => {
     const findMenu = async () => {
       setLoadingMenu(true)
-      await request(URL_MENU_ID.replace('{menuId}', `${menuId}`), MethodsEnum.GET, setMenuReducer)
+      await getMenu({
+        variables: {data: menuId}
+      })
       setLoadingMenu(false)
     }
 

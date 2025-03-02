@@ -1,23 +1,22 @@
-import { DocumentNode, OperationVariables, useQuery } from '@apollo/client'
+import { DocumentNode, OperationVariables, useLazyQuery, useQuery } from '@apollo/client'
 import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer'
 import { formatErrorMessage } from '../functions/errorHandler'
 import { useEffect } from 'react'
 
-interface useGraphQLQueryProps<TData, TVariables> {
+interface useGraphQLQueryProps<TData> {
   query: DocumentNode
-  variables?: TVariables
+  //variables?: TVariables
   saveGlobal?: (object: TData) => void
 }
 
 export const useGraphQLQuery = <TData, TVariables extends OperationVariables>({
   query,
-  variables,
+  //variables,
   saveGlobal,
-}: useGraphQLQueryProps<TData, TVariables>) => {
+}: useGraphQLQueryProps<TData>) => {
   const { setNotification } = useGlobalReducer()
 
-  const { data, loading, error, refetch } = useQuery<TData, TVariables>(query, {
-    variables,
+  const [executeQuery, { data, loading, error, refetch }] = useLazyQuery<TData, TVariables>(query, {
     fetchPolicy: 'cache-and-network',
   })
 
@@ -35,5 +34,5 @@ export const useGraphQLQuery = <TData, TVariables extends OperationVariables>({
     }
   }, [error, setNotification])
 
-  return { data, loading, error, refetch }
+  return { executeQuery, data, loading, error, refetch }
 }

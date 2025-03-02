@@ -4,7 +4,7 @@ import { MenuRoutesEnum } from '../routes'
 import { useNavigate } from 'react-router'
 import { useMenuReducer } from '../../../store/reducers/menuReducer/useMenuReducer'
 import { useGraphQLQuery } from '../../../shared/hooks/useGraphQLQuery'
-import { GET_MENU } from '../../../shared/graphql/queries/menuQueries'
+import { GET_MENUS } from '../../../shared/graphql/queries/menuQueries'
 import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
 import { DELETE_MENU } from '../../../shared/graphql/mutations/menuMutations'
 
@@ -13,11 +13,15 @@ export const useMenu = () => {
   const { menus, setMenus } = useMenuReducer()
   const [menusFiltered, setMenusFiltered] = useState<MenuType[]>([])
   const navigate = useNavigate()
-  const { loading, refetch } = useGraphQLQuery({ query: GET_MENU, saveGlobal: setMenus })
+  const {executeQuery, loading, refetch } = useGraphQLQuery({ query: GET_MENUS, saveGlobal: setMenus })
   const { mutate: deleteMenu} = useGraphQLMutation({ 
     mutation: DELETE_MENU, 
     successMessage:'Cardápio deletado!' 
   })
+
+  useEffect(() => {
+    executeQuery()
+  }, [])
 
   useEffect(() => {
     setMenusFiltered([...menus])
