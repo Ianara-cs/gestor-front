@@ -6,6 +6,8 @@ import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { useNavigate } from 'react-router'
 import { ItemsRoutesEnum } from '../routes'
 import { useItemReducer } from '../../../store/reducers/itemReducer/useItemReducer'
+import { useGraphQLQuery } from '../../../shared/hooks/useGraphQLQuery'
+import { GET_ITEMS } from '../../../shared/graphql/queries/itemQueries'
 
 export const useItem = () => {
   const [itemIdDelete, setItemIdDelete] = useState<string | undefined>()
@@ -14,12 +16,17 @@ export const useItem = () => {
   const [itemsFiltered, setItemsFiltered] = useState<ItemType[]>([])
   const navigate = useNavigate()
 
+  const { executeQuery } = useGraphQLQuery({
+    query: GET_ITEMS,
+    saveGlobal: setItems,
+  })
+
   useEffect(() => {
     setItemsFiltered([...items])
   }, [items])
 
   useEffect(() => {
-    request(URL_ITEM, MethodsEnum.GET, setItems)
+    executeQuery()
   }, [])
 
   const onSearch = (value: string) => {
