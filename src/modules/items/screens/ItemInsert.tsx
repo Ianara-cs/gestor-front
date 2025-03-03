@@ -2,6 +2,7 @@ import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input/input'
 import InputMoney from '../../../shared/components/inputs/inputMoney/inputMoney'
 import Select from '../../../shared/components/inputs/select/select'
+import TextArea from '../../../shared/components/inputs/textArea/textArea'
 import Loading from '../../../shared/components/loading/Loading'
 import Screen from '../../../shared/components/screen/Screen'
 import {
@@ -73,7 +74,7 @@ const ItemInsert = () => {
             <Select
               title="Menu"
               defaultValue={item.menuId}
-              margin={'0px 0px 32px 0px'}
+              margin={'0px 0px 16px 0px'}
               placeholder="Escolha uma categoria"
               style={{ width: '100%' }}
               onChange={handleChangeSelect}
@@ -81,6 +82,13 @@ const ItemInsert = () => {
                 value: `${menu.id}`,
                 label: `${menu.name}`,
               }))}
+            />
+            <TextArea
+              title="Descrição"
+              onChange={(event) => onChangeInput(event, 'name')}
+              placeholder="Digite a descrição do item..."
+              margin={'0px 0px 32px 0px'}
+              autoSize={{ minRows: 3, maxRows: 5 }}
             />
             <DisplayFlexJustifyRight>
               <LimitedContainer margin="0px 8px" width={120}>

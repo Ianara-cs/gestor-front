@@ -1,17 +1,20 @@
 import { useNavigate, useParams } from 'react-router'
 import { InsertItem } from '../../../shared/dtos/insertItem.dto'
 import { useEffect, useState } from 'react'
-import { URL_ITEM, URL_ITEM_ID } from '../../../shared/constants/urls'
+import { URL_ITEM_ID } from '../../../shared/constants/urls'
 import { ItemsRoutesEnum } from '../routes'
 import { useRequests } from '../../../shared/hooks/useRequest'
 import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { useItemReducer } from '../../../store/reducers/itemReducer/useItemReducer'
+import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
+import { CREATE_ITEM } from '../../../shared/graphql/mutations/itemMutations'
 
 const DEFAULT_ITEM = {
   name: '',
   quantityPeople: 0,
   price: 0,
   menuId: '',
+  description: '',
 }
 
 export const useInsertItem = () => {
@@ -27,6 +30,13 @@ export const useInsertItem = () => {
     quantityPeople: 0,
     price: 0,
     menuId: '',
+    description: '',
+  })
+
+  const { mutate: createItem } = useGraphQLMutation({
+    mutation: CREATE_ITEM,
+    successMessage: 'Item Adicionado!',
+    navigateTo: ItemsRoutesEnum.ITEM,
   })
 
   useEffect(() => {
@@ -35,7 +45,7 @@ export const useInsertItem = () => {
         name: itemReducer.name,
         price: itemReducer.price,
         quantityPeople: itemReducer.quantityPeople,
-        menuId: itemReducer.menuId,
+        menuId: itemReducer.menu.id,
       })
     }
   }, [itemReducer])
@@ -65,7 +75,7 @@ export const useInsertItem = () => {
   }, [item])
 
   const onChangeInput = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     nameObject: string,
     isNumber?: boolean,
   ) => {
@@ -96,9 +106,12 @@ export const useInsertItem = () => {
         'Item Modificado!',
       )
     } else {
-      await request(URL_ITEM, MethodsEnum.POST, undefined, item, 'Item Adicionado!')
+      await createItem({
+        variables: {
+          data: item,
+        },
+      })
     }
-    navigate(ItemsRoutesEnum.ITEM)
   }
 
   return {
