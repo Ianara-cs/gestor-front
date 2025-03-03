@@ -13,3 +13,19 @@ export const GET_ITEMS = gql`
     }
   }
 `
+
+export const GET_ITEM = gql`
+  query getItem($data: String!) {
+    item(id: $data) {
+      id
+      name
+      price
+      description
+      quantityPeople
+      menu {
+        id
+        name
+      }
+    }
+  }
+`

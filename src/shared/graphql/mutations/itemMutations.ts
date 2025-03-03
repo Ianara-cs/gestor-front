@@ -15,3 +15,11 @@ export const DELETE_ITEM = gql`
     }
   }
 `
+
+export const UPDATE_ITEM = gql`
+  mutation UpdateItem($data: UpdateItemInput!) {
+    updateItem(updateItemData: $data) {
+      id
+    }
+  }
+`

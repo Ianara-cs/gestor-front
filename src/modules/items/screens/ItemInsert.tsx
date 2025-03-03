@@ -44,7 +44,9 @@ const ItemInsert = () => {
       ]}
     >
       {loadingItem ? (
-        <Loading />
+        <FlexJustifyCenter>
+          <Loading size="large" />
+        </FlexJustifyCenter>
       ) : (
         <FlexJustifyCenter>
           <LimitedContainer width={400}>
@@ -85,7 +87,8 @@ const ItemInsert = () => {
             />
             <TextArea
               title="Descrição"
-              onChange={(event) => onChangeInput(event, 'name')}
+              value={item.description}
+              onChange={(event) => onChangeInput(event, 'description')}
               placeholder="Digite a descrição do item..."
               margin={'0px 0px 32px 0px'}
               autoSize={{ minRows: 3, maxRows: 5 }}

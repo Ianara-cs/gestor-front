@@ -1,13 +1,12 @@
 import { useNavigate, useParams } from 'react-router'
 import { InsertItem } from '../../../shared/dtos/insertItem.dto'
 import { useEffect, useState } from 'react'
-import { URL_ITEM_ID } from '../../../shared/constants/urls'
 import { ItemsRoutesEnum } from '../routes'
-import { useRequests } from '../../../shared/hooks/useRequest'
-import { MethodsEnum } from '../../../shared/enums/methods.enum'
 import { useItemReducer } from '../../../store/reducers/itemReducer/useItemReducer'
 import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
-import { CREATE_ITEM } from '../../../shared/graphql/mutations/itemMutations'
+import { CREATE_ITEM, UPDATE_ITEM } from '../../../shared/graphql/mutations/itemMutations'
+import { useGraphQLQuery } from '../../../shared/hooks/useGraphQLQuery'
+import { GET_ITEM } from '../../../shared/graphql/queries/itemQueries'
 
 const DEFAULT_ITEM = {
   name: '',
@@ -20,7 +19,6 @@ const DEFAULT_ITEM = {
 export const useInsertItem = () => {
   const { itemId } = useParams<{ itemId: string }>()
   const navigate = useNavigate()
-  const { request, loading } = useRequests()
   const [loadingItem, setLoadingItem] = useState<boolean>(false)
   const [disabledButton, setDisabledButton] = useState<boolean>(true)
   const { item: itemReducer, setItem: setItemReducer } = useItemReducer()
@@ -33,9 +31,20 @@ export const useInsertItem = () => {
     description: '',
   })
 
+  const { executeQuery: getItem } = useGraphQLQuery({
+    query: GET_ITEM,
+    saveGlobal: setItemReducer,
+  })
+
   const { mutate: createItem } = useGraphQLMutation({
     mutation: CREATE_ITEM,
     successMessage: 'Item Adicionado!',
+    navigateTo: ItemsRoutesEnum.ITEM,
+  })
+
+  const { mutate: updateItem, loading } = useGraphQLMutation({
+    mutation: UPDATE_ITEM,
+    successMessage: 'Item modificado!',
     navigateTo: ItemsRoutesEnum.ITEM,
   })
 
@@ -45,6 +54,7 @@ export const useInsertItem = () => {
         name: itemReducer.name,
         price: itemReducer.price,
         quantityPeople: itemReducer.quantityPeople,
+        description: itemReducer.description,
         menuId: itemReducer.menu.id,
       })
     }
@@ -53,7 +63,11 @@ export const useInsertItem = () => {
   useEffect(() => {
     const findItem = async () => {
       setLoadingItem(true)
-      await request(URL_ITEM_ID.replace('{itemId}', `${itemId}`), MethodsEnum.GET, setItemReducer)
+      await getItem({
+        variables: {
+          data: `${itemId}`,
+        },
+      })
       setLoadingItem(false)
     }
 
@@ -98,13 +112,11 @@ export const useInsertItem = () => {
 
   const handleInsertItem = async () => {
     if (itemId) {
-      await request(
-        URL_ITEM_ID.replace('{itemId}', itemId),
-        MethodsEnum.PUT,
-        undefined,
-        item,
-        'Item Modificado!',
-      )
+      await updateItem({
+        variables: {
+          data: { ...item, id: itemId },
+        },
+      })
     } else {
       await createItem({
         variables: {

@@ -6,5 +6,6 @@ export interface ItemType {
   price: number
   imgUrl?: string
   quantityPeople: number
+  description: string
   menu: Omit<MenuType, 'items'>
 }

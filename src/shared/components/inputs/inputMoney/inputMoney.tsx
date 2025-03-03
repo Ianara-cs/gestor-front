@@ -13,7 +13,7 @@ const InputMoney = ({ value, onChange, addonBefore = 'R$', ...props }: InputMone
   useEffect(() => {
     const valueString = `${value}`
     if (!/\D/.test(valueString.replace('.', ''))) {
-      setCurrentValue(value.toFixed(DECIMAL_SIZE).toString().replace('.', ','))
+      setCurrentValue(Number(value).toFixed(DECIMAL_SIZE).toString().replace('.', ','))
     }
   }, [value])
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
