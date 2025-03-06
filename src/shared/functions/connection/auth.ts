@@ -1,10 +1,11 @@
 import { NavigateFunction, redirect } from 'react-router'
-import { AUTHORIZATION_KEY } from '../../constants/authorizationConstants'
+import { AUTHORIZATION_KEY, REFRESH_TOKEN } from '../../constants/authorizationConstants'
 import { getItemStorage, removeItemStorage, setItemStorage } from './storageProxy'
 import { LoginRoutesEnum } from '../../../modules/login/routes'
 import { fetchUser } from './connectionGraphQL'
+import { store } from '../../../store/store'
 
-export const unsetAuthorizationToken = () => removeItemStorage(AUTHORIZATION_KEY)
+export const unsetAuthorizationToken = (key: string) => removeItemStorage(key)
 
 export const setAuthorizationToken = (key: string ,token?: string) => {
   if (token) {
@@ -12,17 +13,27 @@ export const setAuthorizationToken = (key: string ,token?: string) => {
   }
 }
 
-export const getAuthorizationToken = () => getItemStorage(AUTHORIZATION_KEY)
+export const getAuthorizationToken = (key: string) => getItemStorage(key)
 
 export const verifyLoggedIn = async () => {
-  const token = getAuthorizationToken();
+  const token = getAuthorizationToken(AUTHORIZATION_KEY);
   if (!token) {
     return redirect(LoginRoutesEnum.LOGIN)
   }
 
-  const user = await fetchUser()
+  const user = store.getState().globalReducer.user 
 
-  if (!user) {
+  if (user) {
+    return null
+  }
+
+  try {
+    const user = await fetchUser()
+
+    if (!user) {
+      return redirect(LoginRoutesEnum.LOGIN)
+    }
+  } catch(error) {
     return redirect(LoginRoutesEnum.LOGIN)
   }
 
@@ -30,6 +41,7 @@ export const verifyLoggedIn = async () => {
 }
 
 export const logout = (navigate: NavigateFunction) => {
-  unsetAuthorizationToken()
+  unsetAuthorizationToken(AUTHORIZATION_KEY)
+  unsetAuthorizationToken(REFRESH_TOKEN)
   navigate(LoginRoutesEnum.LOGIN)
 }

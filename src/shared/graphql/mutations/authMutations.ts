@@ -7,3 +7,11 @@ export const SIGN_IN = gql`
     }
   }
 `
+
+export const REFRESH_TOKEN = gql`
+  mutation RefreshToken ($data: String!){
+    refreshToken(refreshTokenData: $data) {
+      accessToken
+    }
+  }	
+`

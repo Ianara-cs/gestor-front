@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { MethodsEnum } from '../../enums/methods.enum'
 import { ERROR_ACCESS_DANIED, ERROR_CONNECTION } from '../../constants/errosStatus'
 import { getAuthorizationToken } from './auth'
+import { AUTHORIZATION_KEY } from '../../constants/authorizationConstants'
 
 export type MethodType = 'get' | 'post' | 'put' | 'patch' | 'delete'
 
@@ -9,7 +10,7 @@ export default class ConnectionAPI {
   static async call<T>(url: string, method: MethodType, body?: unknown): Promise<T> {
     const config: AxiosRequestConfig = {
       headers: {
-        Authorization: getAuthorizationToken(),
+        Authorization: getAuthorizationToken(AUTHORIZATION_KEY),
         'Content-Type': 'application/json',
       },
     }
