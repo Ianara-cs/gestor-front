@@ -1,50 +1,32 @@
-import { useState } from 'react'
 import Button from '../../../shared/components/buttons/button/button'
 import Input from '../../../shared/components/inputs/input/input'
 import { ContainerLoginScreen, LoginBox, Title } from '../styles/loginScreen.styles'
-import { useRequests } from '../../../shared/hooks/useRequest'
-import { useNavigate } from 'react-router'
+import { useLogin } from '../hooks/useLogin'
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const { authRequest, loading } = useRequests()
-  const navigate = useNavigate()
-
-  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value)
-  }
-
-  const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value)
-  }
-
-  const handleLogin = async () => {
-    authRequest(
-      {
-        email: email,
-        password: password,
-      },
-      navigate,
-    )
-  }
+  const {
+    loading, 
+    signIn,
+    handleLogin, 
+    onChangeInput,
+  } = useLogin()
 
   return (
     <ContainerLoginScreen>
       <LoginBox>
         <Title>Login</Title>
         <Input
-          title="Email:"
-          placeholder="Digite o seu email"
-          onChange={handleEmail}
-          value={email}
+          title="Usuário:"
+          placeholder="Digite o seu usário"
+          onChange={(e) => onChangeInput(e, 'username')}
+          value={signIn.username}
         />
         <Input
-          type="password"
           title="Senha:"
+          type="password"
           placeholder="Digite a sua senha"
-          onChange={handlePassword}
-          value={password}
+          onChange={(e) => onChangeInput(e, 'password')}
+          value={signIn.password}
         />
         <Button loading={loading} margin="2rem 0" type="primary" onClick={handleLogin}>
           Entrar
