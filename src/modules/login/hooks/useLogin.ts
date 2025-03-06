@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
-import { SignIn } from "../../../shared/dtos/login.dto"
-import { useGraphQLMutation } from "../../../shared/hooks/useGraphQLMutation"
-import { SIGN_IN } from "../../../shared/graphql/mutations/authMutations"
-import { FirstScreenRoutesEnum } from "../../firstScreen/routes"
-import { TokensType } from "../../../shared/types/TokensType"
-import { setAuthorizationToken } from "../../../shared/functions/connection/auth"
-import { AUTHORIZATION_KEY, REFRESH_TOKEN } from "../../../shared/constants/authorizationConstants"
-import { useNavigate } from "react-router"
+import { useEffect, useState } from 'react'
+import { SignIn } from '../../../shared/dtos/login.dto'
+import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
+import { SIGN_IN } from '../../../shared/graphql/mutations/authMutations'
+import { FirstScreenRoutesEnum } from '../../firstScreen/routes'
+import { TokensType } from '../../../shared/types/TokensType'
+import { setAuthorizationToken } from '../../../shared/functions/connection/auth'
+import { AUTHORIZATION_KEY, REFRESH_TOKEN } from '../../../shared/constants/authorizationConstants'
+import { useNavigate } from 'react-router'
 
 export const useLogin = () => {
   const navigate = useNavigate()
@@ -19,21 +19,18 @@ export const useLogin = () => {
     password: '',
   })
 
-  const {mutate: login, loading } = useGraphQLMutation({
+  const { mutate: login, loading } = useGraphQLMutation({
     mutation: SIGN_IN,
     saveGlobal: setTokens,
   })
 
   useEffect(() => {
-    setAuthorizationToken(AUTHORIZATION_KEY,tokens.accessToken)
-    setAuthorizationToken(REFRESH_TOKEN,tokens.refreshToken)
+    setAuthorizationToken(AUTHORIZATION_KEY, tokens.accessToken)
+    setAuthorizationToken(REFRESH_TOKEN, tokens.refreshToken)
     navigate(FirstScreenRoutesEnum.FIRST_SCREEN)
   }, [tokens.accessToken, tokens.refreshToken])
 
-  const onChangeInput = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    nameObject: string,
-  ) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>, nameObject: string) => {
     setSignIn({
       ...signIn,
       [nameObject]: event.target.value,
@@ -44,9 +41,9 @@ export const useLogin = () => {
     login({
       variables: {
         data: {
-          ...signIn
-        }
-      }
+          ...signIn,
+        },
+      },
     })
   }
 
@@ -56,5 +53,4 @@ export const useLogin = () => {
     onChangeInput,
     handleLogin,
   }
-
 }

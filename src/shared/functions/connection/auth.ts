@@ -7,7 +7,7 @@ import { store } from '../../../store/store'
 
 export const unsetAuthorizationToken = (key: string) => removeItemStorage(key)
 
-export const setAuthorizationToken = (key: string ,token?: string) => {
+export const setAuthorizationToken = (key: string, token?: string) => {
   if (token) {
     setItemStorage(key, token)
   }
@@ -16,12 +16,12 @@ export const setAuthorizationToken = (key: string ,token?: string) => {
 export const getAuthorizationToken = (key: string) => getItemStorage(key)
 
 export const verifyLoggedIn = async () => {
-  const token = getAuthorizationToken(AUTHORIZATION_KEY);
+  const token = getAuthorizationToken(AUTHORIZATION_KEY)
   if (!token) {
     return redirect(LoginRoutesEnum.LOGIN)
   }
 
-  const user = store.getState().globalReducer.user 
+  const user = store.getState().globalReducer.user
 
   if (user) {
     return null
@@ -33,7 +33,7 @@ export const verifyLoggedIn = async () => {
     if (!user) {
       return redirect(LoginRoutesEnum.LOGIN)
     }
-  } catch(error) {
+  } catch (error) {
     return redirect(LoginRoutesEnum.LOGIN)
   }
 

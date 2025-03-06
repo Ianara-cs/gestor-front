@@ -20,20 +20,23 @@ export const useGraphQLMutation = <TData, TVariables, DefaultContext>({
   const { setNotification } = useGlobalReducer()
   const navigate = useNavigate()
 
-  const [mutate, { data, loading, error }] = useMutation<TData, TVariables, DefaultContext>(mutation, {
-    onCompleted: () => {
-      if (successMessage) {
-        setNotification('Sucesso!', 'success', successMessage)
-      }
+  const [mutate, { data, loading, error }] = useMutation<TData, TVariables, DefaultContext>(
+    mutation,
+    {
+      onCompleted: () => {
+        if (successMessage) {
+          setNotification('Sucesso!', 'success', successMessage)
+        }
 
-      if (navigateTo) {
-        navigate(navigateTo)
-      }
+        if (navigateTo) {
+          navigate(navigateTo)
+        }
+      },
+      onError: (error) => {
+        setNotification(formatErrorMessage(error), 'error')
+      },
     },
-    onError: (error) => {
-      setNotification(formatErrorMessage(error), 'error')
-    },
-  })
+  )
 
   const extractedData = data ? Object.values<TData>(data)[0] : undefined
 

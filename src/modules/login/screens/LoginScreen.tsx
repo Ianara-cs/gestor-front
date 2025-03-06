@@ -4,12 +4,7 @@ import { ContainerLoginScreen, LoginBox, Title } from '../styles/loginScreen.sty
 import { useLogin } from '../hooks/useLogin'
 
 const LoginScreen = () => {
-  const {
-    loading, 
-    signIn,
-    handleLogin, 
-    onChangeInput,
-  } = useLogin()
+  const { loading, signIn, handleLogin, onChangeInput } = useLogin()
 
   return (
     <ContainerLoginScreen>

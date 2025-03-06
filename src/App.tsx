@@ -12,14 +12,14 @@ function App() {
   const { contextHolder } = useNotification()
   const { user, setUser } = useGlobalReducer()
 
-  const {executeQuery} = useGraphQLQuery({
+  const { executeQuery } = useGraphQLQuery({
     query: WHO_AM_I,
-    saveGlobal: setUser
+    saveGlobal: setUser,
   })
 
   useEffect(() => {
-    const token = getAuthorizationToken(AUTHORIZATION_KEY);
-    if(token && !user) {
+    const token = getAuthorizationToken(AUTHORIZATION_KEY)
+    if (token && !user) {
       executeQuery()
     }
   }, [executeQuery, user])
