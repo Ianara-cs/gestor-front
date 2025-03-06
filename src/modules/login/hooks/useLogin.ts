@@ -6,8 +6,10 @@ import { FirstScreenRoutesEnum } from "../../firstScreen/routes"
 import { TokensType } from "../../../shared/types/TokensType"
 import { setAuthorizationToken } from "../../../shared/functions/connection/auth"
 import { AUTHORIZATION_KEY, REFRESH_TOKEN } from "../../../shared/constants/authorizationConstants"
+import { useNavigate } from "react-router"
 
 export const useLogin = () => {
+  const navigate = useNavigate()
   const [tokens, setTokens] = useState<TokensType>({
     accessToken: '',
     refreshToken: '',
@@ -19,13 +21,13 @@ export const useLogin = () => {
 
   const {mutate: login, loading } = useGraphQLMutation({
     mutation: SIGN_IN,
-    navigateTo: FirstScreenRoutesEnum.FIRST_SCREEN,
     saveGlobal: setTokens,
   })
 
   useEffect(() => {
     setAuthorizationToken(AUTHORIZATION_KEY,tokens.accessToken)
     setAuthorizationToken(REFRESH_TOKEN,tokens.refreshToken)
+    navigate(FirstScreenRoutesEnum.FIRST_SCREEN)
   }, [tokens.accessToken, tokens.refreshToken])
 
   const onChangeInput = (

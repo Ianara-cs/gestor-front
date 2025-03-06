@@ -21,3 +21,8 @@ export const FlexJustifyCenter = styled(DisplayFlex)<DisplayFlexProps>`
   justify-content: center;
   ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
 `
+
+export const FlexAlignItemsCenter = styled(DisplayFlex)<DisplayFlexProps>`
+  align-items: center;
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
+`

@@ -1,20 +1,28 @@
 import { RouterProvider } from 'react-router'
 import { router } from './routes'
 import { useNotification } from './shared/hooks/useNotification'
-import { useRequests } from './shared/hooks/useRequest'
 import { useEffect } from 'react'
-import { URL_AUTH } from './shared/constants/urls'
-import { MethodsEnum } from './shared/enums/methods.enum'
 import { useGlobalReducer } from './store/reducers/globalReducer/useGlobalReducer'
+import { useGraphQLQuery } from './shared/hooks/useGraphQLQuery'
+import { WHO_AM_I } from './shared/graphql/queries/authQueries'
+import { getAuthorizationToken } from './shared/functions/connection/auth'
+import { AUTHORIZATION_KEY } from './shared/constants/authorizationConstants'
 
 function App() {
   const { contextHolder } = useNotification()
-  const { setUser } = useGlobalReducer()
-  const { request } = useRequests()
+  const { user, setUser } = useGlobalReducer()
+
+  const {executeQuery} = useGraphQLQuery({
+    query: WHO_AM_I,
+    saveGlobal: setUser
+  })
 
   useEffect(() => {
-    request(URL_AUTH, MethodsEnum.GET, setUser)
-  }, [])
+    const token = getAuthorizationToken(AUTHORIZATION_KEY);
+    if(token && !user) {
+      executeQuery()
+    }
+  }, [executeQuery, user])
 
   return (
     <>
