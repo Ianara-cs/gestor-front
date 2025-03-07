@@ -16,3 +16,9 @@ export const REFRESH_TOKEN = gql`
     }
   }
 `
+
+export const LOGOUT = gql`
+  mutation Logout($data: String!) {
+    logout(refreshTokenData: $data)
+  }
+`

@@ -2,7 +2,6 @@ import {
   ApolloClient,
   ApolloLink,
   InMemoryCache,
-  Observable,
   createHttpLink,
   fromPromise,
 } from '@apollo/client'
@@ -16,6 +15,7 @@ import { LoginRoutesEnum } from '../../../modules/login/routes'
 import { getAuthorizationToken, setAuthorizationToken, unsetAuthorizationToken } from './auth'
 import { connectionAPIPost } from './connectionAPI'
 import { TokensType } from '../../types/TokensType'
+import { LOGOUT } from '../../graphql/mutations/authMutations'
 
 const httpLink = createHttpLink({
   uri: URL_GRAPHQL,
@@ -94,6 +94,22 @@ export const fetchUser = async () => {
   try {
     const { data } = await apolloClient.query({
       query: WHO_AM_I,
+      fetchPolicy: 'network-only',
+    })
+    return data
+  } catch (error) {
+    return null
+  }
+}
+
+export const fetchLogout = async () => {
+  try {
+    const refreshToken = getAuthorizationToken(REFRESH_TOKEN)
+    if (!refreshToken) throw new Error('Refresh token não encontrado')
+
+    const { data } = await apolloClient.mutate({
+      mutation: LOGOUT,
+      variables: { data: refreshToken },
       fetchPolicy: 'network-only',
     })
     return data

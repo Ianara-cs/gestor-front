@@ -22,6 +22,10 @@ const Header = () => {
     setIsModalOpen(false)
   }
 
+  const handleLogout = async () => {
+    await logout(navigate)
+  }
+
   return (
     <HeaderContainer buttonCollapsed={buttonMenuActivate}>
       {screenSize?.isMobile && (
@@ -38,7 +42,7 @@ const Header = () => {
         <Modal
           title="Atenção!"
           open={isModalOpen}
-          onOk={() => logout(navigate)}
+          onOk={handleLogout}
           onCancel={handleCancel}
           okText="Sim"
           cancelText="Cancelar"
