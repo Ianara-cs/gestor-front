@@ -2,16 +2,17 @@ import { DocumentNode, OperationVariables, useLazyQuery } from '@apollo/client'
 import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer'
 import { formatErrorMessage } from '../functions/errorHandler'
 import { useEffect } from 'react'
+import { isDataPaginate } from '../types/typeGuard/isDataPaginate'
 
 interface useGraphQLQueryProps<TData> {
   query: DocumentNode
-  //variables?: TVariables
+  isPaginate?: boolean
   saveGlobal?: (object: TData) => void
 }
 
 export const useGraphQLQuery = <TData, TVariables extends OperationVariables>({
   query,
-  //variables,
+  isPaginate,
   saveGlobal,
 }: useGraphQLQueryProps<TData>) => {
   const { setNotification } = useGlobalReducer()
@@ -24,7 +25,11 @@ export const useGraphQLQuery = <TData, TVariables extends OperationVariables>({
 
   useEffect(() => {
     if (extractedData && saveGlobal) {
-      saveGlobal(extractedData)
+      if (isPaginate && isDataPaginate<TData>(extractedData)) {
+        saveGlobal(extractedData.result)
+      } else {
+        saveGlobal(extractedData)
+      }
     }
   }, [extractedData, saveGlobal])
 

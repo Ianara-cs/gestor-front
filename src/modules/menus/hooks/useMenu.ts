@@ -15,6 +15,7 @@ export const useMenu = () => {
   const navigate = useNavigate()
   const { executeQuery, loading, refetch } = useGraphQLQuery({
     query: GET_MENUS,
+    isPaginate: true,
     saveGlobal: setMenus,
   })
   const { mutate: deleteMenu } = useGraphQLMutation({
