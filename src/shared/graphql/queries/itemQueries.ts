@@ -1,15 +1,19 @@
 import { gql } from '@apollo/client'
 
 export const GET_ITEMS = gql`
-  query getItems {
-    items {
-      id
-      name
-      price
-      quantityPeople
-      menu {
+  query Items($page: Int, $take: Int) {
+    items(take: $take, page: $page) {
+      result {
+        id
         name
+        price
+        quantityPeople
+        menu {
+          name
+        }
       }
+      total
+      hasNextPage
     }
   }
 `

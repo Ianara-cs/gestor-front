@@ -16,6 +16,7 @@ export const useItem = () => {
 
   const { executeQuery: getItems } = useGraphQLQuery({
     query: GET_ITEMS,
+    isPaginate: true,
     saveGlobal: setItems,
   })
 
