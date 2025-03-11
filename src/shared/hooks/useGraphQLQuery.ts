@@ -15,7 +15,7 @@ export const useGraphQLQuery = <TData, TVariables extends OperationVariables>({
   isPaginate,
   saveGlobal,
 }: useGraphQLQueryProps<TData>) => {
-  const { setNotification } = useGlobalReducer()
+  const { setNotification, setPaginate } = useGlobalReducer()
 
   const [executeQuery, { data, loading, error, refetch }] = useLazyQuery<TData, TVariables>(query, {
     fetchPolicy: 'cache-and-network',
@@ -27,11 +27,12 @@ export const useGraphQLQuery = <TData, TVariables extends OperationVariables>({
     if (extractedData && saveGlobal) {
       if (isPaginate && isDataPaginate<TData>(extractedData)) {
         saveGlobal(extractedData.result)
+        setPaginate({ totalData: extractedData.total })
       } else {
         saveGlobal(extractedData)
       }
     }
-  }, [extractedData, saveGlobal])
+  }, [extractedData])
 
   useEffect(() => {
     if (error) {
