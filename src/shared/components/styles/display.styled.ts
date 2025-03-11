@@ -8,8 +8,14 @@ export const DisplayFlex = styled.div`
   display: flex;
 `
 
-export const DisplayFlexJustifyRight = styled(DisplayFlex)`
+export const FlexJustifyRight = styled(DisplayFlex)<DisplayFlexProps>`
   justify-content: right;
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
+`
+
+export const FlexJustifyLeft = styled(DisplayFlex)<DisplayFlexProps>`
+  justify-content: left;
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
 `
 
 export const FlexJustifyBetween = styled(DisplayFlex)<DisplayFlexProps>`

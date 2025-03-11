@@ -6,7 +6,7 @@ import TextArea from '../../../shared/components/inputs/textArea/textArea'
 import Loading from '../../../shared/components/loading/Loading'
 import Screen from '../../../shared/components/screen/Screen'
 import {
-  DisplayFlexJustifyRight,
+  FlexJustifyRight,
   FlexJustifyCenter,
 } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
@@ -93,7 +93,7 @@ const ItemInsert = () => {
               margin={'0px 0px 32px 0px'}
               autoSize={{ minRows: 3, maxRows: 5 }}
             />
-            <DisplayFlexJustifyRight>
+            <FlexJustifyRight>
               <LimitedContainer margin="0px 8px" width={120}>
                 <Button danger onClick={handleClickCancel}>
                   Cancelar
@@ -109,7 +109,7 @@ const ItemInsert = () => {
                   {isEdit ? 'Salvar' : 'Inserir Menu'}
                 </Button>
               </LimitedContainer>
-            </DisplayFlexJustifyRight>
+            </FlexJustifyRight>
           </LimitedContainer>
         </FlexJustifyCenter>
       )}

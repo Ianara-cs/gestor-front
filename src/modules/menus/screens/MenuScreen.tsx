@@ -1,16 +1,17 @@
 import Screen from '../../../shared/components/screen/Screen'
 import Button from '../../../shared/components/buttons/button/button'
 import { Badge, Input, Modal } from 'antd'
-import {
-  DisplayFlex,
-  FlexJustifyBetween,
-  FlexJustifyCenter,
-} from '../../../shared/components/styles/display.styled'
+import { DisplayFlex, FlexJustifyCenter } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { useMenu } from '../hooks/useMenu'
 import { DeleteOutlined, EditOutlined, SettingOutlined } from '@ant-design/icons'
 import Card from '../../../shared/components/card/Card'
 import Loading from '../../../shared/components/loading/Loading'
+import Pagination from '../../../shared/components/pagination/pagination'
+import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer'
+import FloatingButton from '../../../shared/components/buttons/floatingButton/floatingButton'
+import { useScreenSizeReducer } from '../../../store/reducers/screenSizeReducer/useScreenSizeReducer'
+import { ContainerSearch } from '../styles/menuScreen.style'
 const { Search } = Input
 
 const MenuScreen = () => {
@@ -24,7 +25,10 @@ const MenuScreen = () => {
     handleEditMenu,
     handleCloseModalDelete,
     handleOpenModalDelete,
+    changePage,
   } = useMenu()
+  const { paginate } = useGlobalReducer()
+  const { screenSize } = useScreenSizeReducer()
 
   return (
     <Screen
@@ -47,16 +51,18 @@ const MenuScreen = () => {
       >
         <p>Tem certeza que deseja excluir o menu?</p>
       </Modal>
-      <FlexJustifyBetween margin="16px 0px">
-        <LimitedContainer width={240}>
+      <ContainerSearch>
+        <LimitedContainer width={screenSize?.isMobile ? 600 : 240}>
           <Search placeholder="Nome do item" onSearch={onSearch} enterButton />
         </LimitedContainer>
-        <LimitedContainer width={120}>
-          <Button onClick={handleOnClick} type="primary">
-            Inserir
-          </Button>
-        </LimitedContainer>
-      </FlexJustifyBetween>
+        {!screenSize?.isMobile && (
+          <LimitedContainer width={120}>
+            <Button onClick={handleOnClick} type="primary">
+              Inserir
+            </Button>
+          </LimitedContainer>
+        )}
+      </ContainerSearch>
       <FlexJustifyCenter style={{ flexWrap: 'wrap', gap: '16px' }}>
         {loading ? (
           <Loading size="large" />
@@ -106,6 +112,14 @@ const MenuScreen = () => {
           ))
         )}
       </FlexJustifyCenter>
+      <Pagination
+        style={{ marginBottom: screenSize?.isMobile ? '30px' : 'auto' }}
+        onChange={changePage}
+        total={paginate?.totalData}
+      />
+      {screenSize?.isMobile && (
+        <FloatingButton onClick={handleOnClick} type="primary" children={'Inserir'} width="60%" />
+      )}
     </Screen>
   )
 }

@@ -1,15 +1,11 @@
 import styled from 'styled-components'
 
-export const BoxButtons = styled.div`
+export const ContainerSearch = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 16px 0;
-`
+  margin: 16px 0 20px 0px;
 
-export const LimitSizeButton = styled.div`
-  width: 120px;
-`
-
-export const LimitSizeInput = styled.div`
-  width: 240px;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `

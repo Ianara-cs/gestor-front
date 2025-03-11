@@ -67,7 +67,7 @@ export const Overlay = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
-  z-index: 9;
+  z-index: 999;
 `
 
 export const MenuContent = styled.div`

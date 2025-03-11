@@ -43,6 +43,10 @@ export const useMenu = () => {
     }
   }
 
+  const changePage = async (page: number, pageSize: number) => {
+    await executeQuery({ variables: { page, take: pageSize } })
+  }
+
   const handleEditMenu = async (menuId: string) => {
     navigate(MenuRoutesEnum.MENU_EDIT.replace(':menuId', `${menuId}`))
   }
@@ -75,5 +79,6 @@ export const useMenu = () => {
     handleEditMenu,
     handleOpenModalDelete,
     handleCloseModalDelete,
+    changePage,
   }
 }

@@ -6,7 +6,7 @@ import Select from '../../../shared/components/inputs/select/select'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import { MenuInsertContainer } from '../styles/menuInsert'
 import {
-  DisplayFlexJustifyRight,
+  FlexJustifyRight,
   FlexJustifyCenter,
 } from '../../../shared/components/styles/display.styled'
 import { useInsertMenu } from '../hooks/useInsertMenu'
@@ -69,7 +69,7 @@ const MenuInsert = () => {
                 { value: 'KITCHEN', label: 'Cozinha' },
               ]}
             />
-            <DisplayFlexJustifyRight>
+            <FlexJustifyRight>
               <LimitedContainer margin="0px 8px" width={120}>
                 <Button danger onClick={handleClickCancel}>
                   Cancelar
@@ -85,7 +85,7 @@ const MenuInsert = () => {
                   {isEdit ? 'Salvar' : 'Inserir menu'}
                 </Button>
               </LimitedContainer>
-            </DisplayFlexJustifyRight>
+            </FlexJustifyRight>
           </LimitedContainer>
         </MenuInsertContainer>
       )}
