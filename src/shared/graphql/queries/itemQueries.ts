@@ -8,6 +8,7 @@ export const GET_ITEMS = gql`
         name
         price
         quantityPeople
+        description
         menu {
           name
         }

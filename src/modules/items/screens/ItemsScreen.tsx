@@ -1,18 +1,15 @@
-import { ColumnsType } from 'antd/es/table'
 import Screen from '../../../shared/components/screen/Screen'
-import Table from '../../../shared/components/table/Table'
-import { ItemType } from '../types/ItemType'
 import {
-  FlexJustifyBetween,
-  FlexJustifyCenter,
+  DisplayFlex,
 } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import Button from '../../../shared/components/buttons/button/button'
-import { Input, Modal } from 'antd'
+import { Badge, Input, List, Modal } from 'antd'
 import { useItem } from '../hooks/useItem'
 import { convertNumberToMoney } from '../../../shared/functions/money'
-import { useMemo } from 'react'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons'
+import { ContainerSearch } from '../../menus/styles/menuScreen.style'
+import { useScreenSizeReducer } from '../../../store/reducers/screenSizeReducer/useScreenSizeReducer'
 const { Search } = Input
 
 const ItemsScreen = () => {
@@ -26,57 +23,7 @@ const ItemsScreen = () => {
     handleCloseModalDelete,
     handleOpenModalDelete,
   } = useItem()
-
-  const columns: ColumnsType<ItemType> = useMemo(
-    () => [
-      {
-        title: 'Nome',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <p>{text}</p>,
-        sorter: (a, b) => a.name.localeCompare(b.name),
-      },
-      {
-        title: 'Preço',
-        dataIndex: 'price',
-        key: 'price',
-        render: (_, item) => <p>{convertNumberToMoney(parseFloat(`${item.price}`))}</p>,
-      },
-      {
-        title: 'Quant. de Pessoas',
-        dataIndex: 'quantityPeople',
-        key: 'quantityPeople',
-        render: (text) => <p>{text}</p>,
-      },
-      {
-        title: 'Menu',
-        dataIndex: 'menu',
-        key: 'menu',
-        render: (_, item) => <p>{item.menu.name}</p>,
-      },
-      {
-        title: 'Ações',
-        dataIndex: '',
-        width: 240,
-        key: 'x',
-        render: (_, menu) => (
-          <FlexJustifyCenter>
-            <Button
-              margin="0px 16px 0px 0px"
-              onClick={() => handleEditItem(menu.id)}
-              icon={<EditOutlined />}
-            >
-              Editar
-            </Button>
-            <Button danger onClick={() => handleOpenModalDelete(menu.id)} icon={<DeleteOutlined />}>
-              Deletar
-            </Button>
-          </FlexJustifyCenter>
-        ),
-      },
-    ],
-    [],
-  )
+  const { screenSize } = useScreenSizeReducer()
 
   return (
     <Screen
@@ -99,17 +46,84 @@ const ItemsScreen = () => {
       >
         <p>Tem certeza que deseja excluir o item?</p>
       </Modal>
-      <FlexJustifyBetween margin="16px 0px">
-        <LimitedContainer width={240}>
+      <ContainerSearch>
+        <LimitedContainer width={screenSize?.isMobile ? 600 : 240}>
           <Search placeholder="Nome do item" onSearch={onSearch} enterButton />
         </LimitedContainer>
-        <LimitedContainer width={120}>
-          <Button onClick={handleOnClick} type="primary">
-            Inserir
-          </Button>
-        </LimitedContainer>
-      </FlexJustifyBetween>
-      <Table columns={columns} dataSource={itemsFiltered} />
+        {!screenSize?.isMobile && (
+          <LimitedContainer width={120}>
+            <Button onClick={handleOnClick} type="primary">
+              Inserir
+            </Button>
+          </LimitedContainer>
+        )}
+      </ContainerSearch>
+      <List
+        itemLayout="vertical"
+        size="large"
+        pagination={{
+          onChange: (page) => {
+          },
+          pageSize: 3,
+          align: "center"
+        }}
+        dataSource={itemsFiltered}
+        renderItem={(item) => (
+          <List.Item
+            key={item.id}
+            actions={[
+              <Button 
+                danger 
+                onClick={() => handleOpenModalDelete(item.id)} 
+                icon={<DeleteOutlined />}
+              >
+                Deletar
+              </Button>,
+              <Button
+                onClick={() => handleEditItem(item.id)}
+                icon={<EditOutlined />}
+              >
+                Editar
+              </Button>,
+            ]}
+            extra={
+              <img
+                alt="logo"
+                className="w-[272px] h-[150px] object-cover rounded"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRStdkp1Cb75cPjftUSntZc_DMJw4ocxVRARA&s"
+              />
+            }
+          >
+            <List.Item.Meta
+              title={
+                <span className="text-lg font-bold">
+                  {item.name}
+                </span>
+              }
+              description= {
+                <DisplayFlex className="flex flex-col gap-2">
+                  <div className="flex gap-2">
+                    <Badge
+                      style={{ boxShadow: 'none' }}
+                      count={item.menu.name}
+                      showZero
+                      color="#faad14"
+                    />
+                    <span className="flex gap-0.5 justify-center border border-solid rounded-2xl !px-3 text-sm">
+                      <UserOutlined className="text-xs"/>
+                      {item.quantityPeople}
+                    </span>
+                  </div>
+                  <div>{item.description}</div>
+                </DisplayFlex>
+              }
+            />
+            <div className="text-base font-bold">
+              {convertNumberToMoney(parseFloat(`${item.price}`))}
+            </div>
+          </List.Item>
+        )}
+      />
     </Screen>
   )
 }
