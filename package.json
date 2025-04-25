@@ -16,6 +16,7 @@
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@apollo/client": "^3.13.1",
     "@reduxjs/toolkit": "^2.5.1",
+    "@tailwindcss/vite": "^4.1.4",
     "antd": "^5.23.4",
     "axios": "^1.7.9",
     "graphql": "^16.10.0",
@@ -25,7 +26,8 @@
     "react-redux": "^9.2.0",
     "react-router": "^7.1.5",
     "react-router-dom": "^7.1.5",
-    "styled-components": "^6.1.15"
+    "styled-components": "^6.1.15",
+    "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
