@@ -37,10 +37,10 @@ const Screen = ({ children, listBreadcrumb }: ScreenProps) => {
 
   return (
     <>
-      <Header />
+      {screenSize?.isMobile && <Header />}
       <DisplayFlex>
         <Menu />
-        <ScreenContainer buttonCollapsed={buttonMenuActivate}>
+        <ScreenContainer className="min-h-screen" buttonCollapsed={buttonMenuActivate}>
           {listBreadcrumb && (
             <>
               <Breadcrumb listBreadcrumb={listBreadcrumb} />

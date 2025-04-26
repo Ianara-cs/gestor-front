@@ -17,10 +17,11 @@ export const HeaderContainer = styled.header<ResponsiveMenuProps>`
   padding: 0px 32px 0px 10px;
   background-color: white;
   z-index: 1000;
+  border-bottom: solid 1px #eeee;
 
-  -webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.47);
-  -moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.47);
-  box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.47);
+  //-webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.47);
+  //-moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.47);
+  //box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.47);
 
   @media (max-width: 768px) {
     width: 100%;

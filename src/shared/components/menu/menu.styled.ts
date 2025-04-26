@@ -13,17 +13,17 @@ export const ContainerMenu = styled.div<ResponsiveMenuProps>`
   background-color: #001529;
   width: ${({ buttonCollapsed }) => (buttonCollapsed ? '80px' : '240px')};
   transition: width 0.3s ease;
-  -webkit-box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
-  -moz-box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
-  box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
+  //-webkit-box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
+  //-moz-box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
+  //box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     position: ${({ buttonCollapsed }) => (buttonCollapsed ? 'relative' : 'fixed')};
-    left: ${({ buttonCollapsed }) => (buttonCollapsed ? '-200px' : '0')};
+    left: ${({ buttonCollapsed }) => (buttonCollapsed ? '-300px' : '0')};
     width: ${({ buttonCollapsed }) => (buttonCollapsed ? '0px' : '240px')};
     background-color: #001529;
     transition: all 0.3s ease-in-out;
@@ -48,9 +48,9 @@ export const ContainerLogoName = styled.div<ResponsiveMenuProps>`
 export const LogoMenu = styled(SVGLogo)<ResponsiveMenuProps>`
   width: 50px;
   height: 50px;
-  margin: 0px 16px;
+  //margin-left: 16px;
   fill: white;
-  margin-right: ${({ buttonCollapsed }) => (buttonCollapsed ? '0' : '16px')};
+  margin: ${({ buttonCollapsed }) => (buttonCollapsed ? '0px' : '0px 16px')};
 `
 
 export const NameCompany = styled(Text)<ResponsiveMenuProps>`
@@ -86,8 +86,9 @@ export const MenuContent = styled.div`
 `
 
 export const FooterMenu = styled.div`
-  height: 60px;
+  height: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #001529;

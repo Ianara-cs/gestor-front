@@ -1,6 +1,7 @@
 import {
   HomeOutlined,
   LaptopOutlined,
+  LoginOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ProductOutlined,
@@ -16,7 +17,7 @@ import {
   Overlay,
 } from './menu.styled'
 import type { MenuProps } from 'antd'
-import { Menu as MenuAnt } from 'antd'
+import { Menu as MenuAnt, Modal } from 'antd'
 import { useNavigate } from 'react-router'
 import { MenuRoutesEnum } from '../../../modules/menus/routes'
 import { useState } from 'react'
@@ -25,6 +26,7 @@ import Button from '../buttons/button/button'
 import { useButtonMenuCollapsedReducer } from '../../../store/reducers/buttonMenuCollapsedReducer/buttonMenuCollapsedReducer'
 import { useScreenSizeReducer } from '../../../store/reducers/screenSizeReducer/useScreenSizeReducer'
 import { UsersRoutesEnum } from '../../../modules/users/router'
+import { logout } from '../../functions/connection/auth'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -33,6 +35,7 @@ const Menu = () => {
   const [current, setCurrent] = useState('menus')
   const { buttonMenuActivate, setButtonMenuCollapsed } = useButtonMenuCollapsedReducer()
   const { screenSize } = useScreenSizeReducer()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const toggleCollapsed = () => {
     setButtonMenuCollapsed(!buttonMenuActivate)
@@ -90,10 +93,28 @@ const Menu = () => {
         },
       ],
     },
+    {
+      key: 'logout',
+      label: 'Sair',
+      icon: <LoginOutlined />,
+      onClick: () => showModal()
+    },
   ]
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key)
+  }
+
+  const showModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleLogout = async () => {
+    await logout(navigate)
   }
 
   return (
@@ -104,13 +125,18 @@ const Menu = () => {
       <ContainerMenu buttonCollapsed={buttonMenuActivate}>
         <div className="nome">
           <ContainerLogoName buttonCollapsed={buttonMenuActivate}>
-            <LogoMenu buttonCollapsed={buttonMenuActivate} />
-            <NameCompany buttonCollapsed={buttonMenuActivate}>Gestor CG</NameCompany>
+            <div>
+              <Button 
+                type="primary" 
+                onClick={toggleCollapsed} 
+                className={`${!buttonMenuActivate && "!ml-6"}`}
+              >
+                {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              </Button>
+            </div>
           </ContainerLogoName>
           <MenuContent>
             <MenuAnt
-              defaultSelectedKeys={['2']}
-              defaultOpenKeys={['menus']}
               selectedKeys={[current]}
               mode="inline"
               theme="dark"
@@ -121,10 +147,20 @@ const Menu = () => {
           </MenuContent>
         </div>
         <FooterMenu>
-          <Button type="primary" onClick={toggleCollapsed} style={{ margin: 16 }}>
-            {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            {!buttonMenuActivate && 'Fechar Menu'}
-          </Button>
+          <ContainerLogoName buttonCollapsed={buttonMenuActivate}>
+            <LogoMenu buttonCollapsed={buttonMenuActivate} />
+            <NameCompany buttonCollapsed={buttonMenuActivate}>Gestor CG</NameCompany>
+          </ContainerLogoName>
+          <Modal
+            title="Atenção!"
+            open={isModalOpen}
+            onOk={handleLogout}
+            onCancel={handleCancel}
+            okText="Sim"
+            cancelText="Cancelar"
+          >
+            <p>Tem certeza que deseja sair?</p>
+          </Modal>
         </FooterMenu>
       </ContainerMenu>
     </>
