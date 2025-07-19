@@ -1,7 +1,5 @@
 import Screen from '../../../shared/components/screen/Screen'
-import {
-  DisplayFlex,
-} from '../../../shared/components/styles/display.styled'
+import { DisplayFlex } from '../../../shared/components/styles/display.styled'
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled'
 import Button from '../../../shared/components/buttons/button/button'
 import { Badge, Input, List, Modal } from 'antd'
@@ -62,45 +60,50 @@ const ItemsScreen = () => {
         itemLayout="vertical"
         size="large"
         pagination={{
-          onChange: (page) => {
-          },
+          onChange: (page) => {},
           pageSize: 3,
-          align: "center"
+          align: 'center',
         }}
         dataSource={itemsFiltered}
         renderItem={(item) => (
           <List.Item
             key={item.id}
             actions={[
-              <Button 
-                danger 
-                onClick={() => handleOpenModalDelete(item.id)} 
+              <Button
+                danger
+                onClick={() => handleOpenModalDelete(item.id)}
                 icon={<DeleteOutlined />}
               >
                 Deletar
               </Button>,
-              <Button
-                onClick={() => handleEditItem(item.id)}
-                icon={<EditOutlined />}
-              >
+              <Button onClick={() => handleEditItem(item.id)} icon={<EditOutlined />}>
                 Editar
               </Button>,
             ]}
             extra={
-              <img
-                alt="logo"
-                className="w-[272px] h-[150px] object-cover rounded"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRStdkp1Cb75cPjftUSntZc_DMJw4ocxVRARA&s"
-              />
+              // <img
+              //     alt="logo"
+              //     className="w-[272px] h-[150px] object-cover rounded"
+              //     src="https://images.pexels.com/photos/17559580/pexels-photo-17559580.jpeg"
+              //   />
+              item.menu.category !== 'KITCHEN' ? (
+                <img
+                  alt="logo"
+                  className="w-[272px] h-[150px] object-cover rounded"
+                  src="https://images.pexels.com/photos/17559580/pexels-photo-17559580.jpeg"
+                />
+              ) : (
+                <img
+                  alt="logo"
+                  className="w-[272px] h-[150px] object-cover rounded"
+                  src="https://classic.exame.com/wp-content/uploads/2016/09/size_960_16_9_prato-com-arroz-feijao-ovo-batata-frita-e-carne2.jpg"
+                />
+              )
             }
           >
             <List.Item.Meta
-              title={
-                <span className="text-lg font-bold">
-                  {item.name}
-                </span>
-              }
-              description= {
+              title={<span className="text-lg font-bold">{item.name}</span>}
+              description={
                 <DisplayFlex className="flex flex-col gap-2">
                   <div className="flex gap-2">
                     <Badge
@@ -110,7 +113,7 @@ const ItemsScreen = () => {
                       color="#faad14"
                     />
                     <span className="flex gap-0.5 justify-center border border-solid rounded-2xl !px-3 text-sm">
-                      <UserOutlined className="text-xs"/>
+                      <UserOutlined className="text-xs" />
                       {item.quantityPeople}
                     </span>
                   </div>

@@ -97,7 +97,7 @@ const Menu = () => {
       key: 'logout',
       label: 'Sair',
       icon: <LoginOutlined />,
-      onClick: () => showModal()
+      onClick: () => showModal(),
     },
   ]
 
@@ -126,10 +126,10 @@ const Menu = () => {
         <div className="nome">
           <ContainerLogoName buttonCollapsed={buttonMenuActivate}>
             <div>
-              <Button 
-                type="primary" 
-                onClick={toggleCollapsed} 
-                className={`${!buttonMenuActivate && "!ml-6"}`}
+              <Button
+                type="primary"
+                onClick={toggleCollapsed}
+                className={`${!buttonMenuActivate && '!ml-6'}`}
               >
                 {buttonMenuActivate ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               </Button>
@@ -149,7 +149,7 @@ const Menu = () => {
         <FooterMenu>
           <ContainerLogoName buttonCollapsed={buttonMenuActivate}>
             <LogoMenu buttonCollapsed={buttonMenuActivate} />
-            <NameCompany buttonCollapsed={buttonMenuActivate}>Gestor CG</NameCompany>
+            <NameCompany buttonCollapsed={buttonMenuActivate}>GuabirSys</NameCompany>
           </ContainerLogoName>
           <Modal
             title="Atenção!"

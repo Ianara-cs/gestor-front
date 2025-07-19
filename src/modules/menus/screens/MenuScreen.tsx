@@ -53,7 +53,7 @@ const MenuScreen = () => {
       </Modal>
       <ContainerSearch>
         <LimitedContainer width={screenSize?.isMobile ? 600 : 240}>
-          <Search placeholder="Nome do item" onSearch={onSearch} enterButton />
+          <Search placeholder="Nome do menu" onSearch={onSearch} enterButton />
         </LimitedContainer>
         {!screenSize?.isMobile && (
           <LimitedContainer width={120}>
@@ -80,7 +80,7 @@ const MenuScreen = () => {
                   boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
                 }}
                 actions={[
-                  <SettingOutlined key="setting" title="ferrass" />,
+                  // <SettingOutlined key="setting" title="ferrass" />,
                   <EditOutlined
                     key="edit"
                     title="editar"
