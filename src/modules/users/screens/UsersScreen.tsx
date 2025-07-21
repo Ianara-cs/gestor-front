@@ -18,11 +18,13 @@ import { Avatar, List, Modal } from 'antd'
 import { getObjetValue } from '../../../shared/functions/utils'
 import { useScreenSizeReducer } from '../../../store/reducers/screenSizeReducer/useScreenSizeReducer'
 import FloatingButton from '../../../shared/components/buttons/floatingButton/floatingButton'
+import { useNavigate } from 'react-router'
+import { UsersRoutesEnum } from '../router'
 
 const roles = {
   MANAGER: 'Gerente',
   CHEF: 'Cozinheiro',
-  ATTENDENT: 'Garçom',
+  ATTENDANT: 'Garçom',
 }
 
 const UsersScreen = () => {
@@ -34,6 +36,7 @@ const UsersScreen = () => {
     handleCloseModalDelete,
   } = useUser()
   const { screenSize } = useScreenSizeReducer()
+  const navigate = useNavigate()
 
   const columns: ColumnsType<UserType> = useMemo(
     () => [
@@ -82,10 +85,7 @@ const UsersScreen = () => {
     <Screen
       listBreadcrumb={[
         {
-          title: 'HOME',
-        },
-        {
-          title: 'Usuários',
+          title: 'USUÁRIOS',
         },
       ]}
     >
@@ -105,7 +105,9 @@ const UsersScreen = () => {
         </LimitedContainer>
         {!screenSize?.isMobile && (
           <LimitedContainer width={120}>
-            <Button type="primary">Inserir</Button>
+            <Button onClick={() => navigate(UsersRoutesEnum.CREATE_USER)} type="primary">
+              Inserir
+            </Button>
           </LimitedContainer>
         )}
       </FlexJustifyBetween>
@@ -158,7 +160,14 @@ const UsersScreen = () => {
           )}
         />
       )}
-      {screenSize?.isMobile && <FloatingButton type="primary" children={'Inserir'} width="60%" />}
+      {screenSize?.isMobile && (
+        <FloatingButton
+          onClick={() => navigate(UsersRoutesEnum.CREATE_USER)}
+          type="primary"
+          children={'Inserir'}
+          width="60%"
+        />
+      )}
     </Screen>
   )
 }
