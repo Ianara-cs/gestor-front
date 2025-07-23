@@ -7,6 +7,9 @@ import { useGraphQLQuery } from './shared/hooks/useGraphQLQuery'
 import { WHO_AM_I } from './shared/graphql/queries/authQueries'
 import { getAuthorizationToken } from './shared/functions/connection/auth'
 import { AUTHORIZATION_KEY } from './shared/constants/authorizationConstants'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 function App() {
   const { contextHolder } = useNotification()
