@@ -8,4 +8,4 @@ export const URL_MENU_ID = 'http://localhost:3001/menus/{menuId}'
 export const URL_ITEM = 'http://localhost:3001/items'
 export const URL_ITEM_ID = 'http://localhost:3001/items/{itemId}'
 
-export const URL_GRAPHQL = 'http://localhost:3000/graphql'
+export const URL_GRAPHQL = import.meta.env.VITE_API_URL
