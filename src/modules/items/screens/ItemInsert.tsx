@@ -32,9 +32,6 @@ const ItemInsert = () => {
     <Screen
       listBreadcrumb={[
         {
-          title: 'HOME',
-        },
-        {
           title: 'ITENS',
           href: ItemsRoutesEnum.ITEM,
         },
@@ -52,14 +49,15 @@ const ItemInsert = () => {
           <LimitedContainer width={400}>
             <Input
               onChange={(event) => onChangeInput(event, 'name')}
-              margin={'0px 0px 16px 0px'}
+              margin={'0px 0px 12px 0px'}
               title="Nome"
               placeholder="Nome"
               value={item.name}
             />
             <InputMoney
               onChange={(event) => onChangeInput(event, 'price', true)}
-              margin={'0px 0px 16px 0px'}
+              margin={'0px 0px 12px 0px'}
+              style={{ height: '100%' }}
               title="Preço"
               placeholder="Preço"
               value={item.price}
@@ -68,7 +66,7 @@ const ItemInsert = () => {
               type="number"
               min={1}
               onChange={(event) => onChangeInput(event, 'quantityPeople', true)}
-              margin={'0px 0px 16px 0px'}
+              margin={'0px 0px 12px 0px'}
               title="Quantidade de Pessoas"
               placeholder="Digite a quantidade de pessoas"
               value={item.quantityPeople}
@@ -76,7 +74,7 @@ const ItemInsert = () => {
             <Select
               title="Menu"
               defaultValue={item.menuId}
-              margin={'0px 0px 16px 0px'}
+              margin={'0px 0px 12px 0px'}
               placeholder="Escolha uma categoria"
               style={{ width: '100%' }}
               onChange={handleChangeSelect}

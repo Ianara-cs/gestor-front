@@ -31,9 +31,6 @@ const MenuInsert = () => {
     <Screen
       listBreadcrumb={[
         {
-          title: 'HOME',
-        },
-        {
           title: 'MENUS',
           href: MenuRoutesEnum.MENUS,
         },

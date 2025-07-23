@@ -34,9 +34,6 @@ const MenuScreen = () => {
     <Screen
       listBreadcrumb={[
         {
-          title: 'HOME',
-        },
-        {
           title: 'MENUS',
         },
       ]}

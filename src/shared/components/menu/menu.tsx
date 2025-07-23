@@ -128,6 +128,7 @@ const Menu = () => {
             <div>
               <Button
                 type="primary"
+                style={{ background: '#001529' }}
                 onClick={toggleCollapsed}
                 className={`${!buttonMenuActivate && '!ml-6'}`}
               >

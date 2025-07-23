@@ -10,7 +10,7 @@ export const ContainerMenu = styled.div<ResponsiveMenuProps>`
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: #001529;
+  background: #001529;
   width: ${({ buttonCollapsed }) => (buttonCollapsed ? '80px' : '240px')};
   transition: width 0.3s ease;
   //-webkit-box-shadow: 1px 0px 8px 0px rgba(0, 0, 0, 0.71);

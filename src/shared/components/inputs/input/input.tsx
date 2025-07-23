@@ -1,5 +1,5 @@
-import { Input as InputAnt, InputProps as InputPropsAnt } from 'antd'
-import { BoxInput, TitleInput } from './input.styles'
+import { InputProps as InputPropsAnt } from 'antd'
+import { BoxInput, StyledInput, TitleInput } from './input.styles'
 
 export interface InputProps extends InputPropsAnt {
   title?: string
@@ -10,7 +10,7 @@ const Input = ({ title, margin, ...props }: InputProps) => {
   return (
     <BoxInput style={{ margin }}>
       {title && <TitleInput>{title}</TitleInput>}
-      <InputAnt {...props} />
+      <StyledInput {...props} />
     </BoxInput>
   )
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Input as InputAnt } from 'antd'
 
 export const BoxInput = styled.div`
   display: flex;
@@ -8,8 +9,25 @@ export const BoxInput = styled.div`
 `
 
 export const TitleInput = styled.label`
-  font-style: normal;
+  font-size: 0.875rem;
   font-weight: 500;
-  font-size: 14px;
-  margin: 0.5rem 0.2rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+`
+
+export const StyledInput = styled(InputAnt)`
+  height: 40px;
+  border-radius: 0.375rem;
+
+  &:hover,
+  &:focus {
+    border-color: #6e8efb !important;
+    box-shadow: 0 0 0 2px rgba(110, 142, 251, 0.2);
+  }
+
+  &:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+  }
 `

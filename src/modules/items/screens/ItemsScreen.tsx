@@ -27,9 +27,6 @@ const ItemsScreen = () => {
     <Screen
       listBreadcrumb={[
         {
-          title: 'HOME',
-        },
-        {
           title: 'ITENS',
         },
       ]}

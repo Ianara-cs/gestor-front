@@ -1,5 +1,5 @@
-import { Select as SelectAnt, SelectProps as SelectPropsAnt } from 'antd'
-import { BoxSelect, TitleSelect } from './select.styles'
+import { SelectProps as SelectPropsAnt } from 'antd'
+import { BoxSelect, StyledSelect, TitleSelect } from './select.styles'
 
 interface SelectProps extends SelectPropsAnt {
   title?: string
@@ -10,7 +10,7 @@ const Select = ({ title, margin, ...props }: SelectProps) => {
   return (
     <BoxSelect style={{ margin }}>
       {title && <TitleSelect>{title}</TitleSelect>}
-      <SelectAnt style={{ width: '100%' }} {...props} />
+      <StyledSelect style={{ width: '100%' }} {...props} />
     </BoxSelect>
   )
 }
