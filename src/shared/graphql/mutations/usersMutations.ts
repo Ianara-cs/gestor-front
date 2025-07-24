@@ -19,3 +19,12 @@ export const DELETE_USER = gql`
     }
   }
 `
+
+export const DISABLE_USER = gql`
+  mutation DisableUser($data: DisableUserInput!) {
+    disableUser(disableUserData: $data) {
+      id
+      isActive
+    }
+  }
+`

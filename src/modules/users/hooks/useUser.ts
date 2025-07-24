@@ -3,7 +3,7 @@ import { UserType } from '../types/UserType'
 import { useGraphQLQuery } from '../../../shared/hooks/useGraphQLQuery'
 import { GET_USERS } from '../../../shared/graphql/queries/usersQueries'
 import { useGraphQLMutation } from '../../../shared/hooks/useGraphQLMutation'
-import { DELETE_USER } from '../../../shared/graphql/mutations/usersMutations'
+import { DELETE_USER, DISABLE_USER } from '../../../shared/graphql/mutations/usersMutations'
 
 export const useUser = () => {
   const [usersFiltered, setUsersFiltered] = useState<UserType[]>([])
@@ -16,6 +16,11 @@ export const useUser = () => {
   const { mutate: deleteUser } = useGraphQLMutation({
     mutation: DELETE_USER,
     successMessage: 'Usuário deletado!',
+  })
+
+  const { mutate: disableUser } = useGraphQLMutation({
+    mutation: DISABLE_USER,
+    successMessage: 'Usuário modificado!',
   })
 
   useEffect(() => {
@@ -44,11 +49,21 @@ export const useUser = () => {
     setUserDeleteId(undefined)
   }
 
+  const handleDisableUser = async (id: string, active: boolean) => {
+    await disableUser({
+      variables: {
+        data: { id, active },
+      },
+    })
+    await refetch()
+  }
+
   return {
     usersFiltered,
     openModalDelete: !!userDeleteId,
     handleOpenModalDelete,
     handleDeleteUser,
     handleCloseModalDelete,
+    handleDisableUser,
   }
 }

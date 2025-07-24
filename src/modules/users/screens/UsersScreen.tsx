@@ -34,6 +34,7 @@ const UsersScreen = () => {
     handleDeleteUser,
     handleOpenModalDelete,
     handleCloseModalDelete,
+    handleDisableUser,
   } = useUser()
   const { screenSize } = useScreenSizeReducer()
   const navigate = useNavigate()
@@ -67,11 +68,15 @@ const UsersScreen = () => {
         key: 'x',
         render: (_, user) => (
           <div className="flex gap-1">
-            <Button danger onClick={() => handleOpenModalDelete(user.id)} icon={<DeleteOutlined />}>
+            {/* <Button danger onClick={() => handleOpenModalDelete(user.id)} icon={<DeleteOutlined />}>
               Deletar
-            </Button>
+            </Button> */}
             <Button icon={<EditOutlined />}>Editar</Button>
-            <Button icon={user.isActive ? <UserDeleteOutlined /> : <UserAddOutlined />}>
+            <Button
+              danger
+              onClick={() => handleDisableUser(user.id, !user.isActive)}
+              icon={user.isActive ? <UserDeleteOutlined /> : <UserAddOutlined />}
+            >
               {user.isActive ? 'Desativar' : 'Ativar'}
             </Button>
           </div>
@@ -128,15 +133,19 @@ const UsersScreen = () => {
               key={user.id}
               actions={[
                 <div className="flex flex-wrap md:flex-col gap-2 items-center w-full justify-center">
-                  <Button
+                  {/* <Button
                     danger
                     onClick={() => handleOpenModalDelete(user.id)}
                     icon={<DeleteOutlined />}
                   >
                     Deletar
-                  </Button>
+                  </Button> */}
                   <Button icon={<EditOutlined />}>Editar</Button>
-                  <Button icon={user.isActive ? <UserDeleteOutlined /> : <UserAddOutlined />}>
+                  <Button
+                    danger
+                    onClick={() => handleDisableUser(user.id, !user.isActive)}
+                    icon={user.isActive ? <UserDeleteOutlined /> : <UserAddOutlined />}
+                  >
                     {user.isActive ? 'Desativar' : 'Ativar'}
                   </Button>
                 </div>,

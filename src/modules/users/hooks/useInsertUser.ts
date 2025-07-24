@@ -79,7 +79,7 @@ export const useInsertUser = () => {
   }, [])
 
   useEffect(() => {
-    if (user.name) {
+    if (user.name && user.username && user.password && user.role) {
       setDisabledButton(false)
     } else {
       setDisabledButton(true)
